@@ -6,7 +6,7 @@ distinct visual identity, and a set of downstream refinements on top.
 **Zeo is not a fork.** It is a *patch set* applied to the exact Zed source commit that
 gets packaged, in the spirit of what Betterbird is to Thunderbird. There is no vendored
 copy of Zed here and no rebased branch to keep alive — the patches live in
-[`lucascouts/zed-patches`](https://github.com/lucascouts/zed-patches), each one written
+[`zeo-workspace/zed-patches`](https://github.com/zeo-workspace/zed-patches), each one written
 against a named upstream commit and re-verified whenever that commit moves.
 
 That choice is the whole design. A fork accumulates a merge debt that grows with every
@@ -30,7 +30,7 @@ inherits those terms. Report Zeo problems here, never to Zed Industries.
 | [`brand/`](brand/) | the Zeo mark — SVG sources, the generator that builds it, the rendered icons, and their checksums |
 | [`docs/`](docs/) | the rebrand's touch-point inventory, the roadmap, and the Visual Extension API research |
 | [`archive/`](archive/) | the first run (2026), kept as the record it is: story specifications, unpublished commits as patches, and the icon exploration renders |
-| `lucascouts/zed-patches` | **the patches themselves**, including the rebrand series |
+| `zeo-workspace/zed-patches` | **the patches themselves**, including the rebrand series |
 | the `bentoo` overlay | `app-editors/zeo`, which decides which patches apply |
 
 ## Status

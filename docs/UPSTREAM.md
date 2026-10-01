@@ -10,7 +10,7 @@ Zeo copy of Zed's source: the base is whatever commit the `bentoo` overlay's
 |---|---|
 | **Upstream** | `zed-industries/zed` |
 | **The pin** | `EGIT_COMMIT` in `app-editors/zeo` |
-| **Where the patches live** | [`lucascouts/zed-patches`](https://github.com/lucascouts/zed-patches), under `patches/<PF>/` |
+| **Where the patches live** | [`zeo-workspace/zed-patches`](https://github.com/zeo-workspace/zed-patches), under `patches/<PF>/` |
 | **A tree to build against** | `zed-patches/scripts/prepare-tree.sh <PF>` — disposable, rebuildable |
 
 **Never hardcode the commit anywhere else.** The scripts all parse it out of the ebuild,

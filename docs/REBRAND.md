@@ -48,7 +48,7 @@ indigo→teal gradient — **not derived from Zed's trademarked mark**.
 | Collab base URLs (`crates/collab`) | **LEFT** — server-side crate, not shipped in the client. |
 | Docs/help/status/merch links | **LEFT** — Zeo hosts none; a later story may hide these UI entries. |
 | Crash reporter (Sentry) | **LEFT (code)** — endpoint is env-injected via `ZED_MINIDUMP_ENDPOINT`; unset = disabled. |
-| Update/release-notes URLs | **NEUTRALIZED for Zeo** — auto-update disabled (§1); `release_notes_url(Zeo)` points at `github.com/lucascouts/zeo`. |
+| Update/release-notes URLs | **NEUTRALIZED for Zeo** — auto-update disabled (§1); `release_notes_url(Zeo)` points at `github.com/zeo-workspace/zeo`. |
 | Hosted-AI provider id `"zed.dev"` (settings) | **LEFT** — backend provider identifier, not a display brand. |
 | Test fixtures / theme / keymap / docs sample URLs | **LEFT** — not brand config. |
 | `zed://` share-link builder (`crates/client/src/zed_urls.rs` `zed://agent/shared/…`) | **LEFT** — deep agent-share links; out of scope (the app registers/handles `zeo://` via the CLI prefix + `.desktop`). |

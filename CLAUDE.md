@@ -15,6 +15,16 @@ specification, and the reasoning — the patches themselves live in `zed-patches
 | the mark, and the script that builds it | [`brand/`](brand/) |
 | the first attempt, kept as a record | [`archive/`](archive/) |
 
+## Since 2026-10-01 Zeo is the patched editor, not a side package
+
+`app-editors/zeo` took over what `app-editors/zed` used to be: the snapshot, the whole
+Claude-agent patch series, and the rebrand on top — versioned as Zeo (`0.1.0_p<date>`),
+and also prebuilt as `app-editors/zeo-bin`. `app-editors/zed` now builds upstream's
+releases unpatched. The two can no longer be installed side by side; the coexistence the
+rebrand was designed for (separate binary, app_id and state directories) still holds at
+the file level, but the packages block each other by decision. The topology is in
+[`../CLAUDE.md`](../CLAUDE.md).
+
 ## The shape changed on 2026-09-12, and every doc here had to follow
 
 Zeo's first run (2026-07 to 2026-08) **carried a fork**: a real GitHub fork of
