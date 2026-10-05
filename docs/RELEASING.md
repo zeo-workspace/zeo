@@ -67,4 +67,15 @@ A `zeo-bin` release is a GitHub release of `zeo-workspace/zeo` tagged **`v<PVR>`
 `v0.1.1_p20261004`, or `v0.1.1_p20261004-r1` — which is the name the `zeo-bin` ebuild's
 `SRC_URI` expects. The build is `zed-patches/scripts/release-zeo-bin.sh <PF>` (and
 `release-portable.sh <PF>` for the other distributions). Both refuse, before building, a
-version whose changelog section is missing. Publishing is a human step each time.
+version whose changelog section is missing, and `PROVENANCE.txt` names the Zeo version.
+
+The release body is that version's section, taken from this file rather than rewritten:
+
+```bash
+zed-patches/scripts/changelog-notes.sh <PF>    # the section's body, without its heading
+gh release create v<PVR> -R zeo-workspace/zeo --verify-tag -t "Zeo <PVR>" \
+    -F <(zed-patches/scripts/changelog-notes.sh <PF>) <assets…>
+```
+
+`make-bin-release.sh` prints the full sequence once the tarball is written. Publishing is
+a human step each time.
