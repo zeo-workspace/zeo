@@ -18,8 +18,10 @@ specification, and the reasoning — the patches themselves live in `zed-patches
 ## Since 2026-10-01 Zeo is the patched editor, not a side package
 
 `app-editors/zeo` took over what `app-editors/zed` used to be: the snapshot, the whole
-Claude-agent patch series, and the rebrand on top — versioned as Zeo (`0.1.0_p<date>`),
-and also prebuilt as `app-editors/zeo-bin`. `app-editors/zed` now builds upstream's
+Claude-agent patch series, and the rebrand on top — versioned as Zeo
+(`<X.Y.Z>_p<date>[-rN]`: Zeo's own SemVer, the Zed snapshot date, a packaging-only
+revision; since 2026-10-05, rules in [`docs/RELEASING.md`](docs/RELEASING.md), every
+version recorded in [`CHANGELOG.md`](CHANGELOG.md)), and also prebuilt as `app-editors/zeo-bin`. `app-editors/zed` now builds upstream's
 releases unpatched. The two can no longer be installed side by side; the coexistence the
 rebrand was designed for (separate binary, app_id and state directories) still holds at
 the file level, but the packages block each other by decision. The topology is in

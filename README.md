@@ -28,6 +28,8 @@ inherits those terms. Report Zeo problems here, never to Zed Industries.
 | | |
 |---|---|
 | [`brand/`](brand/) | the Zeo mark — SVG sources, the generator that builds it, the rendered icons, and their checksums |
+| [`CHANGELOG.md`](CHANGELOG.md) | what each Zeo version changed, newest first |
+| [`docs/RELEASING.md`](docs/RELEASING.md) | how Zeo is versioned, and how a version and a `zeo-bin` release are cut |
 | [`docs/`](docs/) | the rebrand's touch-point inventory, the roadmap, and the Visual Extension API research |
 | [`archive/`](archive/) | the first run (2026), kept as the record it is: story specifications, unpublished commits as patches, and the icon exploration renders |
 | `zeo-workspace/zed-patches` | **the patches themselves**, including the rebrand series |

@@ -277,7 +277,8 @@ obligation.
   with a sha256 per patch, the USE flags and the baseline; the corresponding source
   travels with the binary (GPL-3 §6). `RESTRICT` must **not** carry `bindist`, which
   would forbid the redistribution the release exists for.
-- **Cadence.** On demand, with its own version suffix. A cold build takes hours because
+- **Cadence.** On demand, with its own version suffix. *(Since 2026-10-05 that suffix is
+  Zeo's own SemVer, `<X.Y.Z>_p<date>`: see [`RELEASING.md`](RELEASING.md).)* A cold build takes hours because
   the generic flags miss nearly every `sccache` entry; promising to track the daily
   snapshot would break in the first busy week.
 
