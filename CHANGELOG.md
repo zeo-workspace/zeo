@@ -17,6 +17,10 @@ reasoning.
 
 ## [Unreleased]
 
+### Fixed
+
+- Opening a task from the Agent Tasks panel opens its thread in the window that holds the thread's project, and raises that window, instead of loading it into the window the panel lives in; when no window holds the project, a new one opens for it. If the thread cannot be opened (its folders were removed, say), the task's row says why. Clicking a row no longer crashes Zeo when the Agent Tasks panel and the agent panel share a dock. The tray notification's link opens threads the same way (patch 0040).
+
 ## [0.1.1] — 2026-10-05
 
 The agent's tasks become visible: a card over the agent panel, a history panel
