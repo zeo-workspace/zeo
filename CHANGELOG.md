@@ -20,6 +20,7 @@ reasoning.
 ### Added
 
 - Every running task on the tasks card shows what it is doing — its last tool and how many tools it has used, beside the elapsed time — without watching it. The Agent Tasks panel's rows now open a task at the tool call that started it ("Open at Task"), where every command and edit it made is recorded; a task with nothing to jump to (one recorded before this change, or a nested subagent's step) opens its thread and says so. The history keeps that starting point across restarts; existing records are kept (patch 0041).
+- Archived task records can be deleted from the Agent Tasks panel: an archived row has a Delete button, and with the Archived filter on, "Delete All Archived" clears the whole filter. Both ask first, and only the record goes — the thread, its conversation and every task that is not archived stay as they are (patch 0042).
 
 ### Fixed
 
