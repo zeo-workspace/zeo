@@ -17,6 +17,10 @@ reasoning.
 
 ## [Unreleased]
 
+### Added
+
+- Every running task on the tasks card shows what it is doing — its last tool and how many tools it has used, beside the elapsed time — without watching it. The Agent Tasks panel's rows now open a task at the tool call that started it ("Open at Task"), where every command and edit it made is recorded; a task with nothing to jump to (one recorded before this change, or a nested subagent's step) opens its thread and says so. The history keeps that starting point across restarts; existing records are kept (patch 0041).
+
 ### Fixed
 
 - Opening a task from the Agent Tasks panel opens its thread in the window that holds the thread's project, and raises that window, instead of loading it into the window the panel lives in; when no window holds the project, a new one opens for it. If the thread cannot be opened (its folders were removed, say), the task's row says why. Clicking a row no longer crashes Zeo when the Agent Tasks panel and the agent panel share a dock. The tray notification's link opens threads the same way (patch 0040).
