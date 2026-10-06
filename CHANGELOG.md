@@ -21,6 +21,7 @@ reasoning.
 
 - Every running task on the tasks card shows what it is doing — its last tool and how many tools it has used, beside the elapsed time — without watching it. The Agent Tasks panel's rows now open a task at the tool call that started it ("Open at Task"), where every command and edit it made is recorded; a task with nothing to jump to (one recorded before this change, or a nested subagent's step) opens its thread and says so. The history keeps that starting point across restarts; existing records are kept (patch 0041).
 - Archived task records can be deleted from the Agent Tasks panel: an archived row has a Delete button, and with the Archived filter on, "Delete All Archived" clears the whole filter. Both ask first, and only the record goes — the thread, its conversation and every task that is not archived stay as they are (patch 0042).
+- Up in the agent panel's message box brings back the messages already sent in that thread, newest first — mentions and images included — so resending or adjusting an earlier prompt is one key away; Down walks forward and finally restores whatever you were typing. Up and Down only do this on the box's first and last line with nothing selected; anywhere else they move the cursor as before, and with a message waiting in the queue, Up in an empty box still pulls that message back first (patch 0044).
 
 ### Fixed
 
