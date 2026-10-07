@@ -24,6 +24,10 @@ reasoning.
 - Up in the agent panel's message box brings back the messages already sent in that thread, newest first — mentions and images included — so resending or adjusting an earlier prompt is one key away; Down walks forward and finally restores whatever you were typing. Up and Down only do this on the box's first and last line with nothing selected; anywhere else they move the cursor as before, and with a message waiting in the queue, Up in an empty box still pulls that message back first (patch 0044).
 - When the agent recommends a slash command in a code block — `/epic:epic stories run 014`, say — the block now has a button beside Copy that opens a new thread with the same agent and that command already in the message box, waiting for you to read it and press Enter; nothing is sent for you. Only a code block holding a single command gets it, and only in the agent's replies (patch 0045).
 
+### Changed
+
+- Claude Agent (Plus) and Claude Agent TUI run the adapter your package manager installed — `/usr/bin/claude-agent-acp-plus` and `/usr/bin/claude-agent-acp-tui` — when it is there, and are installed from npm only when it is not. It is checked each time an agent starts, so installing or removing the adapter takes effect on the next thread without rebuilding Zeo; the Flatpak, which cannot see the host's adapter, keeps using npm. An `agent_servers` entry of your own with the same id still wins (patch 0046).
+
 ### Fixed
 
 - Opening a task from the Agent Tasks panel opens its thread in the window that holds the thread's project, and raises that window, instead of loading it into the window the panel lives in; when no window holds the project, a new one opens for it. If the thread cannot be opened (its folders were removed, say), the task's row says why. Clicking a row no longer crashes Zeo when the Agent Tasks panel and the agent panel share a dock. The tray notification's link opens threads the same way (patch 0040).
