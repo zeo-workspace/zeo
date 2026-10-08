@@ -17,6 +17,12 @@ reasoning.
 
 ## [Unreleased]
 
+## [0.2.1] — 2026-10-08
+
+### Fixed
+
+- The About window names Zeo's version — "Zeo 0.2.1", with the package version, snapshot date included, under "Version" — instead of Zed's. Zed's version moves to a row of its own, "Zed", because extensions check their compatibility against it; "Copy" includes all three (patch 0047).
+
 ## [0.2.0] — 2026-10-07
 
 The agent's tasks become easier to follow and to reach: progress on the card,

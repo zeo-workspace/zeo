@@ -58,8 +58,10 @@ does not count.
    commit with a pathspec. The overlay is committed and pushed by its autoupdate within
    the hour — see the workspace's `CLAUDE.md`.
 
-`zeo --version` prints the package version (`RELEASE_VERSION` is the ebuild's `PV`). The
-in-app About keeps Zed's upstream version: extensions check compatibility against it.
+`zeo --version` prints the package version (`RELEASE_VERSION` is the ebuild's `PV`), and
+so does the in-app About since 0.2.1 (patch `0047`): `X.Y.Z` in its heading, the whole
+`PV` under "Version". Zed's upstream version stays in a row of its own, "Zed", and is
+never replaced — extensions check compatibility against it.
 
 ## Releasing `zeo-bin`
 
