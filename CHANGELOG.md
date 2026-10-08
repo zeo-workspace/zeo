@@ -17,6 +17,15 @@ reasoning.
 
 ## [Unreleased]
 
+## [0.2.0] — 2026-10-07
+
+The agent's tasks become easier to follow and to reach: progress on the card,
+"Open at Task" from the panel, threads opening in their own project's window.
+The message box remembers what was sent, a recommended slash command is one
+click from a new thread, the default Claude agents use the system adapter, and
+the last places that still said Zed — the application menu and Claude Code's
+`/ide` — say Zeo.
+
 ### Added
 
 - Every running task on the tasks card shows what it is doing — its last tool and how many tools it has used, beside the elapsed time — without watching it. The Agent Tasks panel's rows now open a task at the tool call that started it ("Open at Task"), where every command and edit it made is recorded; a task with nothing to jump to (one recorded before this change, or a nested subagent's step) opens its thread and says so. The history keeps that starting point across restarts; existing records are kept (patch 0041).
@@ -27,10 +36,12 @@ reasoning.
 ### Changed
 
 - Claude Agent (Plus) and Claude Agent TUI run the adapter your package manager installed — `/usr/bin/claude-agent-acp-plus` and `/usr/bin/claude-agent-acp-tui` — when it is there, and are installed from npm only when it is not. It is checked each time an agent starts, so installing or removing the adapter takes effect on the next thread without rebuilding Zeo; the Flatpak, which cannot see the host's adapter, keeps using npm. An `agent_servers` entry of your own with the same id still wins (patch 0046).
+- Claude Code's `/ide` names the editor it is connected to "Zeo" instead of "Zed" (patch 0002).
 
 ### Fixed
 
 - Opening a task from the Agent Tasks panel opens its thread in the window that holds the thread's project, and raises that window, instead of loading it into the window the panel lives in; when no window holds the project, a new one opens for it. If the thread cannot be opened (its folders were removed, say), the task's row says why. Clicking a row no longer crashes Zeo when the Agent Tasks panel and the agent panel share a dock. The tray notification's link opens threads the same way (patch 0040).
+- The application menu in the title bar is named "Zeo", with "About Zeo" and "Quit Zeo", and the About window's title says Zeo; they still said Zed. `f10` and any keybinding that opens the menu by its old name, `["app_menu::OpenApplicationMenu", "Zed"]`, keep working (patch 0025).
 
 ## [0.1.1] — 2026-10-05
 

@@ -2,7 +2,8 @@
 
 Measured 2026-09-13 against Zed `9d272b036335`: **404 string literals** in
 `crates/` contain the word `Zed`. Patch `0025` changes **21** of them. This file
-is why the other 383 stay.
+is why the other 383 stay. Re-measured 2026-10-07 — see
+[the last section](#re-measured-2026-10-07-against-cb73ee1d45db).
 
 Re-run the count before trusting any number here:
 
@@ -88,3 +89,48 @@ Reaching for `display_name()` forces `format!`, which turns the binding into a
 `String` and drags in sibling arms like `"Updating..."` that have nothing to do
 with the rebrand. Converting those sites properly is a separate change, and one
 worth offering upstream rather than carrying.
+
+## Re-measured 2026-10-07 against `cb73ee1d45db`
+
+Three weeks of snapshots later, upstream had added **6** literal texts containing
+`Zed` and removed none (354 → 360 sites, unpatched). The comparison is by text, so
+a literal that only moved or lost an `.into()` — all eighteen "support is built-in
+to Zed!" lines did — does not count as new:
+
+```sh
+# in each tree; then diff the second column
+grep -rnoE '"[^"]*\bZed\b[^"]*"' crates/ --include='*.rs' | sed -E 's/^([^:]+):[0-9]+:/\1\t/' | sort -u
+```
+
+| New text | Where | Decision |
+|---|---|---|
+| "Made by the Zed team…" — the Delta announcement | `auto_update_ui` | stays: Delta is Zed Industries' product |
+| "Zed's edit predictions not included in the Free plan." | `edit_prediction_ui` | stays: their plan |
+| "Not signed in to Zed." · "Zed rejected the credentials…" | `language_models_cloud` | stays: their account and service |
+| "…Grok models in Zed's agent." | `x_ai_subscribed` | stays, with the OpenAI and Copilot lines that say the same |
+| "Zed is awesome!" | `markdown` tests | stays: a test |
+
+The lowercase surface moved as little: `.zed/` 139 → 144 references, `zed.dev` 183
+→ 189, three new internal `ZED_*` variables. None is a candidate.
+
+**What the re-measurement did find was two misses, not new strings:**
+
+- **The application menu.** "Zed", "About Zed", "Quit Zed" and the About window's
+  title are not macOS-only: on Linux the title bar renders the same menus. `0025`
+  now builds them from `display_name()`, which takes `format!` cleanly here because
+  `MenuItem::action` and `Menu::name` take `impl Into<SharedString>`. The `f10`
+  binding opens that menu **by name** — `["app_menu::OpenApplicationMenu", "Zed"]`,
+  compared with `==` — so `0025` also treats `"Zed"` as the application menu's old
+  name instead of editing `default-linux.json`, which is churny upstream and would
+  still leave every user keymap that names it broken.
+- **`ideName` in the Claude Code lock file** came from our own patch `0002`, so it
+  never appeared in an upstream inventory. It is now the release channel's display
+  name — Zeo here, still correct for Zed upstream, where `0002` is offered.
+
+Still deliberately unchanged, and why, beyond the table above: the four doc comments
+"without repeating Zed's defaults" (settings schema hover text — one conflict per
+bump for text almost nobody reads), `serverInfo.name: "zed"` in `0002`'s MCP server
+and the ACP/MCP/DAP/OAuth client names (protocol identities other software may key
+on), and the `"Zed Agent"` agent id, which is stored in every native thread's row —
+renaming it would orphan those threads exactly as removing an `agent_servers` entry
+does.
