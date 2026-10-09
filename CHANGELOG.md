@@ -17,6 +17,12 @@ reasoning.
 
 ## [Unreleased]
 
+## [0.2.2] — 2026-10-09
+
+### Fixed
+
+- The Agent Tasks history no longer switches itself off for the session when it meets a task record it cannot read — one written by a newer Zeo, opened by an older one. That record is skipped with a warning in the log, every other record still loads, and new tasks are still saved (patch 0042).
+
 ## [0.2.1] — 2026-10-08
 
 ### Fixed
