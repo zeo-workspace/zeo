@@ -47,6 +47,7 @@ the last places that still said Zed — the application menu and Claude Code's
 ### Fixed
 
 - Opening a task from the Agent Tasks panel opens its thread in the window that holds the thread's project, and raises that window, instead of loading it into the window the panel lives in; when no window holds the project, a new one opens for it. If the thread cannot be opened (its folders were removed, say), the task's row says why. Clicking a row no longer crashes Zeo when the Agent Tasks panel and the agent panel share a dock. The tray notification's link opens threads the same way (patch 0040).
+- While the agent waits on an answer to a question it asked, Enter in the message box no longer sends a message over the open question — a keystroke usually meant for the question's card. Enter and the send chords do nothing there until the question is answered, declined or cancelled; answer on the card (Tab to its field or a button, then Enter) or with the mouse. The Send button and `ctrl-shift-enter` still send, since neither is pressed by accident (patch 0043).
 - The application menu in the title bar is named "Zeo", with "About Zeo" and "Quit Zeo", and the About window's title says Zeo; they still said Zed. `f10` and any keybinding that opens the menu by its old name, `["app_menu::OpenApplicationMenu", "Zed"]`, keep working (patch 0025).
 
 ## [0.1.1] — 2026-10-05
