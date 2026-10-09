@@ -17,6 +17,17 @@ reasoning.
 
 ## [Unreleased]
 
+## [0.2.3] — 2026-10-09
+
+### Changed
+
+- While the agent waits on an answer to its question, pressing Enter in the composer still sends nothing, but now says why: "The agent is waiting on your answer — answer the question, or click Send to send anyway." The hint goes away when the question is answered or dismissed (patch 0043).
+
+### Fixed
+
+- Starting Zeo while another Zeo is running printed "zed is already running"; it now says "Zeo is already running" (patch 0025).
+- The onboarding page's "Trust All Projects By Default" description named Zed's features; it names Zeo's (patch 0025).
+
 ## [0.2.2] — 2026-10-09
 
 ### Fixed
