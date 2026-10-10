@@ -134,3 +134,14 @@ and the ACP/MCP/DAP/OAuth client names (protocol identities other software may k
 on), and the `"Zed Agent"` agent id, which is stored in every native thread's row —
 renaming it would orphan those threads exactly as removing an `agent_servers` entry
 does.
+
+## Added 2026-10-09: the root refusal (story 032)
+
+| Text | Where | Decision |
+|---|---|---|
+| "Running Zed as root or via sudo is unsupported." · "…all subsequent non-root usage of Zed." | `util` (`prevent_root_execution`) | renamed in `0025`: it is printed to whoever just started this binary. `ZED_ALLOW_ROOT` keeps its name — an environment variable a user already sets is an interface, like `f10`'s menu name |
+
+`check-rebrand.sh` never listed it, before the fix or after: the message is one
+string literal spread over four lines, and the scanner reads a literal one line at
+a time, so a multi-line literal is invisible to it. The rebrand baselines therefore
+did not change; a re-measurement that wants this class has to read across lines.
