@@ -109,6 +109,7 @@ grep -rnoE '"[^"]*\bZed\b[^"]*"' crates/ --include='*.rs' | sed -E 's/^([^:]+):[
 | "Not signed in to Zed." · "Zed rejected the credentials…" | `language_models_cloud` | stays: their account and service |
 | "…Grok models in Zed's agent." | `x_ai_subscribed` | stays, with the OpenAI and Copilot lines that say the same |
 | "Zed is awesome!" | `markdown` tests | stays: a test |
+| "Zed AI" — header of the edit-prediction menu when the organization has no subscription (snapshot 96984225, 0.4.0_p20261010) | `edit_prediction_ui` | stays: their hosted service and plan |
 
 The lowercase surface moved as little: `.zed/` 139 → 144 references, `zed.dev` 183
 → 189, three new internal `ZED_*` variables. None is a candidate.
