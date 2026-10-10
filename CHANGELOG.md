@@ -17,6 +17,19 @@ reasoning.
 
 ## [Unreleased]
 
+## [0.3.0] — 2026-10-09
+
+Threads can be pinned: the threads you keep coming back to stay in one place in
+the sidebar, whichever project they belong to, and stay pinned across restarts.
+
+### Added
+
+- A "Pinned" section in the threads sidebar. Pin a thread with "Pin Thread" in its context menu, the pin button on the row under the mouse, or `shift-p` on the selected row (when the sidebar's filter is not being typed in); the same three unpin it. A pinned thread leaves its project's group and is listed in the Pinned section, after the last project group, the most recently pinned first, each row labelled with its project's name; the section's header collapses like a project's. Pins survive restarts and are the same in every window, so a window also lists pinned threads of projects it does not have open: opening one opens its project in that window, or switches to the window that already has it. The sidebar's filter applies to pinned rows like any other, and so do keyboard navigation, rename and archive; an archived thread leaves the section but keeps its pin. A new thread with no message sent yet cannot be pinned. Pins are kept in a table of their own in Zeo's database; nothing already there changes (patches 0048, 0049).
+
+### Fixed
+
+- Starting Zeo as root or via sudo, without `ZED_ALLOW_ROOT=true`, printed "Running Zed as root or via sudo is unsupported"; the message now names Zeo. The variable keeps its name, so `ZED_ALLOW_ROOT=true` still lets it start (patch 0025).
+
 ## [0.2.3] — 2026-10-09
 
 ### Changed
