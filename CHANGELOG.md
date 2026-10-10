@@ -17,6 +17,16 @@ reasoning.
 
 ## [Unreleased]
 
+## [0.4.0] — 2026-10-10
+
+Click an element in the page your Vite dev server is showing, and it lands in the
+agent's composer: its source lines, a summary of what the page rendered, and a
+screenshot of it — ready for you to write what to change.
+
+### Added
+
+- A devtools bridge for the `zeo-devtools` Vite plugin. In `vite dev`, the plugin adds an element picker to the page (a floating button or `Alt+Shift+Z`); clicking an element — or Shift+clicking several and pressing Send — puts one chip per element into the agent composer of the Zeo window that has that project open, followed by a screenshot of the elements when the browser can capture its own tab and the agent accepts images. A chip reads `<Component> <tag> · <file>:<line>`, opens the source where it points when clicked, and gives the agent the element's source lines plus the rendered DOM summary, marked as page data rather than instructions. With no thread open, a new one starts with the default agent. The window comes to the front and the composer gets the focus, unless you moved to another window while a new thread was loading. Nothing is ever sent to the agent: the chips wait for you. The bridge listens on a socket only your user can reach, `$XDG_RUNTIME_DIR/zeo/devtools.sock`, and accepts only files inside the project; turn it off with `"devtools_bridge": { "enabled": false }` in settings.json, or leave it out of the build with `USE=-devtools-bridge` (patch 0052).
+
 ## [0.3.0] — 2026-10-09
 
 Threads can be pinned: the threads you keep coming back to stay in one place in
