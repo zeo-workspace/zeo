@@ -17,6 +17,24 @@ reasoning.
 
 ## [Unreleased]
 
+### Added
+
+- An X at the right end of the Agent Tasks panel's new top toolbar closes the panel, the way you close an editor or terminal tab. When you reopen it, the toggles, the filter text and the selection are as you left them. Rows still have no close button of their own (patch 0053).
+- A vertical scrollbar on the Agent Tasks list, shown while the list is longer than the panel. Drag its thumb, or click its track to jump there (patch 0053).
+- A "Filter tasks…" box on the Agent Tasks toolbar. Type part of a task's label, description or thread title to list only the matching rows, on top of the Active/Finished/Failed/Archived toggles. Case does not matter. Escape clears it, and with no match the panel says "No tasks match the filter" (patch 0053).
+- Select several rows of the Agent Tasks panel:
+  - Ctrl-click (Cmd-click on macOS) adds or removes one row.
+  - Shift-click selects a range.
+  - With the keyboard, Tab to a row and press Shift-Space.
+  - A plain click still opens the task's thread and clears the selection. Escape clears it too.
+  - While rows are selected, a bar under the toggles shows how many, with Clear Selection and Archive Selected. Archive Selected archives every selected task that has ended, in one go; a running task stays selected and is not archived (patch 0053).
+- Delete Selected on that bar while the Archived filter is on. It asks "Delete N task records?", counting only the selected archived records, and deletes just those; the threads are not affected. Deleting one record, and Delete All Archived, work as before (patch 0053).
+
+### Changed
+
+- Agent Tasks rows read left to right. A task's name now starts at the row's left edge, under its thread's title, instead of being centred, and long names are cut at the right with the whole text in the tooltip (patch 0053).
+- The Agent Tasks panel can be used from the keyboard. Tab and Shift-Tab now move between its controls; before, they did nothing there (patch 0053).
+
 ## [0.4.0] — 2026-10-10
 
 Click an element in the page your Vite dev server is showing, and it lands in the
