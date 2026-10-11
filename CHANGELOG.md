@@ -29,9 +29,12 @@ reasoning.
   - A plain click still opens the task's thread and clears the selection. Escape clears it too.
   - While rows are selected, a bar under the toggles shows how many, with Clear Selection and Archive Selected. Archive Selected archives every selected task that has ended, in one go; a running task stays selected and is not archived (patch 0053).
 - Delete Selected on that bar while the Archived filter is on. It asks "Delete N task records?", counting only the selected archived records, and deletes just those; the threads are not affected, and the rest of the selection stays selected. Deleting one record, and Delete All Archived, work as before (patch 0053).
+- A Run button beside the "New Thread with This Command" button on a code block that holds one slash command. It opens a new thread with the same agent and sends that block's command right away, so a recommended command takes one click instead of a click and Enter. The other button still only fills in the new thread's message box (patch 0054).
+- A "Skipped" line where an agent's question was, when you decline it: "Skipped" and the question, in muted text on one line, so you can still see later why the agent went on without your answer (patch 0055).
 
 ### Changed
 
+- Decline on an agent's question now asks "Skip this question?" first, but only when you have typed or picked something; an untouched question is still declined in one click. "Keep Answering" leaves everything as it was. Other kinds of forms decline as before (patch 0055).
 - Agent Tasks rows read left to right. A task's name now starts at the row's left edge, under its thread's title, instead of being centred, and long names are cut at the right with the whole text in the tooltip (patch 0053).
 - While the Agent Tasks filter has text, a thread header's archive button archives only the rows it lists, not tasks the filter hides (patch 0053).
 - The Agent Tasks panel can be used from the keyboard. Tab and Shift-Tab now move between its controls; before, they did nothing there (patch 0053).
