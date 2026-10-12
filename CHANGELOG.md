@@ -31,6 +31,9 @@ reasoning.
 - Delete Selected on that bar while the Archived filter is on. It asks "Delete N task records?", counting only the selected archived records, and deletes just those; the threads are not affected, and the rest of the selection stays selected. Deleting one record, and Delete All Archived, work as before (patch 0053).
 - A Run button beside the "New Thread with This Command" button on a code block that holds one slash command. It opens a new thread with the same agent and sends that block's command right away, so a recommended command takes one click instead of a click and Enter. The other button still only fills in the new thread's message box (patch 0054).
 - A "Skipped" line where an agent's question was, when you decline it: "Skipped" and the question, in muted text on one line, so you can still see later why the agent went on without your answer (patch 0055).
+- A row of the tasks card can be expanded with the arrow at its left. It shows what the task is running and, for a shell running in the background, its last output lines, updated as they come. Needs claude-agent-acp-plus 0.26.0 or later (patch 0056).
+- Open Log on a shell task, in the tasks card and in the Agent Tasks panel, saves what the task printed and opens it in a read-only tab. The log is kept in Zeo's data directory, readable only by you, up to 1 MiB, so a task's output can still be read after the task ended and after a restart. It is deleted with the task's record. In a remote project Open Log says it is not available yet (patch 0056).
+- Open Thread on a subagent task opens that subagent's own thread, when the session holding it is loaded (patch 0056).
 
 ### Changed
 
