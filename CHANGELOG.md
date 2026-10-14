@@ -42,12 +42,15 @@ reasoning.
 - The first time the extension connects, Zeo asks "A browser extension (<browser>, <id>) wants to read and drive your agent threads." with Allow and Deny. Allow is remembered; Deny holds until Zeo restarts; the question gives up after two minutes. Palette command `devtools bridge: revoke browser access` forgets every browser you allowed and disconnects it (patch 0058).
 - The ebuild installs the extension's host, `/usr/libexec/zeo-browser-host`, and the files that tell Chrome, Chromium and Firefox where it is. The browser starts it and it talks to Zeo over the same private socket as the devtools bridge; no network port is opened. Page content arrives in the thread marked as untrusted page data, with form values, editor text, tokens and link query values removed before it leaves the page (patch 0058).
 
+- Hovering the context ring asks Claude Agent (Plus) for your 5-hour, weekly and per-model quota right then, and the tooltip updates while it is open, instead of showing what arrived last. At most one request every 5 seconds. Needs an adapter that offers it (`_claude/usage`, the claude-agent-acp-plus release after 0.26.0); between hovers the adapter now refreshes the quota every 30 seconds instead of 60 while the thread is idle (patch 0060).
+
 ### Changed
 
 - Decline on an agent's question now asks "Skip this question?" first, but only when you have typed or picked something; an untouched question is still declined in one click. "Keep Answering" leaves everything as it was. Other kinds of forms decline as before (patch 0055).
 - Agent Tasks rows read left to right. A task's name now starts at the row's left edge, under its thread's title, instead of being centred, and long names are cut at the right with the whole text in the tooltip (patch 0053).
 - While the Agent Tasks filter has text, a thread header's archive button archives only the rows it lists, not tasks the filter hides (patch 0053).
 - The Agent Tasks panel can be used from the keyboard. Tab and Shift-Tab now move between its controls; before, they did nothing there (patch 0053).
+- Switches in a thread's settings row, such as Fast mode, now apply only to the session you flip them in. Shift-click no longer saves a switch as the default for new threads, and reopening a thread no longer turns one back on; the switch's tooltip says "Applies to this session only". Lists — model, mode, effort — still take Shift-click and are still restored when a thread is reopened (patch 0059).
 
 ## [0.4.0] — 2026-10-10
 
