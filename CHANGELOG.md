@@ -52,6 +52,10 @@ reasoning.
 - The Agent Tasks panel can be used from the keyboard. Tab and Shift-Tab now move between its controls; before, they did nothing there (patch 0053).
 - Switches in a thread's settings row, such as Fast mode, now apply only to the session you flip them in. Shift-click no longer saves a switch as the default for new threads, and reopening a thread no longer turns one back on; the switch's tooltip says "Applies to this session only". Lists — model, mode, effort — still take Shift-click and are still restored when a thread is reopened (patch 0059).
 
+### Fixed
+
+- Clicking a zeo-systray notification for a session Zeo never started — a `claude` run in a terminal, another editor's Claude plugin, a script — no longer opens Zeo on "no thread found". Zeo now starts every agent with `ZEO_THREAD=1` in its environment, and zeo-systray offers Open thread only for sessions that carry it; the others still notify. Needs the zeo-systray release after 0.3.0 (patch 0061).
+
 ## [0.4.0] — 2026-10-10
 
 Click an element in the page your Vite dev server is showing, and it lands in the
