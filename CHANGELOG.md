@@ -17,6 +17,13 @@ reasoning.
 
 ## [Unreleased]
 
+## [0.5.0] — 2026-10-14
+
+Agents get a sandbox and a browser: Claude Agent (Plus) and TUI can run inside ai-jail,
+and a browser extension shows and drives the same agent thread from a sidebar. The tasks
+card shows a background shell's output, the Agent Tasks panel gets filters, selection and
+a keyboard, and switches such as Fast mode now last for their session only.
+
 ### Added
 
 - An X at the right end of the Agent Tasks panel's new top toolbar closes the panel, the way you close an editor or terminal tab. When you reopen it, the toggles, the filter text and the selection are as you left them. Rows still have no close button of their own (patch 0053).
