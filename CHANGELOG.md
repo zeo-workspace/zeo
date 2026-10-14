@@ -44,6 +44,8 @@ reasoning.
 
 - Hovering the context ring asks Claude Agent (Plus) for your 5-hour, weekly and per-model quota right then, and the tooltip updates while it is open, instead of showing what arrived last. At most one request every 5 seconds. Needs an adapter that offers it (`_claude/usage`, the claude-agent-acp-plus release after 0.26.0); between hovers the adapter now refreshes the quota every 30 seconds instead of 60 while the thread is idle (patch 0060).
 
+- Creating a git worktree is refused when the repository's own git config names a program the checkout would run (includeIf, a filter driver, a Git LFS custom transfer agent or extension) or cannot be read. The error names the setting, and nothing is created (patch 0062).
+
 ### Changed
 
 - Decline on an agent's question now asks "Skip this question?" first, but only when you have typed or picked something; an untouched question is still declined in one click. "Keep Answering" leaves everything as it was. Other kinds of forms decline as before (patch 0055).
