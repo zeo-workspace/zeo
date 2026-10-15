@@ -67,9 +67,13 @@ never replaced — extensions check compatibility against it.
 
 A `zeo-bin` release is a GitHub release of `zeo-workspace/zeo` tagged **`v<PVR>`** —
 `v0.1.1_p20261004`, or `v0.1.1_p20261004-r1` — which is the name the `zeo-bin` ebuild's
-`SRC_URI` expects. The build is `zed-patches/scripts/release-zeo-bin.sh <PF>` (and
-`release-portable.sh <PF>` for the other distributions). Both refuse, before building, a
-version whose changelog section is missing, and `PROVENANCE.txt` names the Zeo version.
+`SRC_URI` expects. The build is `zed-patches/scripts/release-portable.sh <PF>`, which
+compiles in a Debian 12 container and packages `zeo-bin` together with the portable
+packages. That `zeo-bin` carries no `zeo-browser-host`, which is why the ebuild has no
+`browser-extension` flag. `release-zeo-bin.sh <PF>` is the Gentoo-host build used up to `-r1`:
+it writes a tarball with the same name and different bytes, so never publish its output.
+Both scripts refuse, before building, a version whose changelog section is missing, and
+`PROVENANCE.txt` names the Zeo version.
 
 The release body is that version's section, taken from this file rather than rewritten:
 
