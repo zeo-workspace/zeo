@@ -17,6 +17,13 @@ reasoning.
 
 ## [Unreleased]
 
+### Added
+
+- A devtools panel for your web app, under USE `devtools-panel` (on by default; it needs `browser-extension`). With the `zeo-devtools` Vite plugin, `vite dev` also serves a panel page: your app on the left, a chat with the agent on the right, on its own port of the same host. The chat is a thread in Zeo — a devtools thread of that project — so you can open it in Zeo's thread list and write to it from the editor too. The panel sees only its project's devtools threads, never your other threads, and works only while the project is open in Zeo: close the project and the panel's chat is disabled until you open it again. A devtools thread is kept once it has its first message; an empty one is gone after a restart (patch 0063).
+- `devtools: start` runs the project's dev server in a terminal: its `dev` script with the package manager its lockfile or `packageManager` names, or `devtools.dev_command` from `.zed/settings.json` when the project is trusted. Running it again shows that terminal instead of starting a second server, and `devtools: stop` closes it. A server Zeo started stops when the window that started it closes, and when Zeo quits. If the server has not connected to Zeo after 60 seconds, Zeo says so (patch 0063).
+- `devtools: open in browser` starts the project's dev server when it is not running yet, creates a new devtools thread and opens the panel on it. By default the panel opens in a Chromium window with a profile of its own, so it keeps its logins apart from your everyday browser; set `"devtools": { "browser": "system" }` in your user settings to use your default browser instead, or run `devtools: open in browser isolated` / `devtools: open in browser system` for one time. Without Chromium installed, the panel opens in your default browser and Zeo tells you why. `devtools.browser_extension_path` loads an unpacked extension into that Chromium window. Both browser settings are read from your user settings file only (patch 0063).
+- A globe badge on devtools threads in the thread list, and a "Devtools threads only" toggle beside the search box that lists just those, together with the search text and the pinned section (patch 0063).
+
 ## [0.5.0] — 2026-10-14
 
 Agents get a sandbox and a browser: Claude Agent (Plus) and TUI can run inside ai-jail,
