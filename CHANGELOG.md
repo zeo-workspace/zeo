@@ -24,6 +24,10 @@ reasoning.
 - `devtools: open in browser` starts the project's dev server when it is not running yet, creates a new devtools thread and opens the panel on it. By default the panel opens in a Chromium window with a profile of its own, so it keeps its logins apart from your everyday browser; set `"devtools": { "browser": "system" }` in your user settings to use your default browser instead, or run `devtools: open in browser isolated` / `devtools: open in browser system` for one time. Without Chromium installed, the panel opens in your default browser and Zeo tells you why. `devtools.browser_extension_path` loads an unpacked extension into that Chromium window. Both browser settings are read from your user settings file only (patch 0063).
 - A globe badge on devtools threads in the thread list, and a "Devtools threads only" toggle beside the search box that lists just those, together with the search text and the pinned section (patch 0063).
 
+### Security
+
+- A malicious extension could crash Zeo or corrupt the memory of its WebAssembly sandbox, and an attacker on your network path could weaken the key exchange of Zeo's HTTPS connections. Zeo now builds with wasmtime 48.0.6 and rustls 0.23.46, which fix RUSTSEC-2026-0314, RUSTSEC-2026-0325, RUSTSEC-2026-0359, RUSTSEC-2026-0363 and RUSTSEC-2026-0364 (wasmtime) and RUSTSEC-2026-0349 (rustls), together with twenty more advisories in the same crates that do not affect Zeo on Linux. Upstream Zed still ships the old versions (patch 0064).
+
 ## [0.5.0] — 2026-10-14
 
 Agents get a sandbox and a browser: Claude Agent (Plus) and TUI can run inside ai-jail,
