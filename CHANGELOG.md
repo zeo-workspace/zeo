@@ -25,6 +25,12 @@ reasoning.
 - A globe badge on devtools threads in the thread list, and a "Devtools threads only" toggle beside the search box that lists just those, together with the search text and the pinned section (patch 0063).
 - Drag to reorder the agent sidebar. Drag a project's header onto another project to move it there; that order is kept per window and after a restart, and "Move Up"/"Move Down" in the header menu still work. Drag a thread onto another thread of the same project to put it there: the project switches to a manual order that new messages no longer reshuffle, new threads show above the arranged ones, and "Sort by Recent" in the project's menu returns it to most-recent-first. Drag a pinned thread to reorder the Pinned section. Thread and pinned orders are the same in every window and survive a restart. Threads and pins cannot be dragged while the thread list is filtered — by search text, or by "Devtools threads only" — since only part of the list is on screen; projects still can (patch 0065; with USE `devtools-panel`, patch 0063 adds the devtools-only half of that rule, so the two ship together).
 
+## [0.5.1] — 2026-10-18
+
+### Fixed
+
+- Open Log on a background task no longer crashes Zeo when the task's output is larger than 1 MiB and contains characters longer than one byte, such as accented letters or the `�` that stands for bytes that are not valid text. The log still keeps the last 1 MiB, starting at the beginning of a line (patch 0056).
+
 ### Security
 
 - A malicious extension could crash Zeo or corrupt the memory of its WebAssembly sandbox, and an attacker on your network path could weaken the key exchange of Zeo's HTTPS connections. Zeo now builds with wasmtime 48.0.6 and rustls 0.23.46, which fix RUSTSEC-2026-0314, RUSTSEC-2026-0325, RUSTSEC-2026-0359, RUSTSEC-2026-0363 and RUSTSEC-2026-0364 (wasmtime) and RUSTSEC-2026-0349 (rustls), together with twenty more advisories in the same crates that do not affect Zeo on Linux. Upstream Zed still ships the old versions (patch 0064).
