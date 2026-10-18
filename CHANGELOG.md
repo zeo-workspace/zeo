@@ -27,14 +27,9 @@ reasoning.
 
 ## [0.5.1] — 2026-10-18
 
-A fix and a security release, built on the Zed snapshot of 2026-10-17: Open Log no
-longer crashes Zeo on a large log, and extensions and HTTPS run on patched wasmtime and
-rustls. Ships as `app-editors/zeo` and as the prebuilt `zeo-bin`, `.deb`, `.rpm`,
-AppImage and Flatpak.
-
 ### Fixed
 
-- Open Log on a background task no longer crashes Zeo when the task's output is larger than 1 MiB and contains characters longer than one byte, such as accented letters or the `�` that stands for bytes that are not valid text. The log still keeps the last 1 MiB, starting at the beginning of a line (patch 0056).
+- Open Log no longer crashes Zeo when a task's output is larger than 1 MiB and holds multibyte characters, such as accented letters or `�` (patch 0056).
 
 ### Security
 
@@ -71,9 +66,7 @@ a keyboard, and switches such as Fast mode now last for their session only.
 - A browser sidebar for the same agent thread, under USE `browser-extension` (on by default; it needs `devtools-bridge`). zeo-browser, an extension you build and install locally from `zed/zeo-browser` (Chrome or Chromium unpacked; Firefox installed system-wide by the ebuild), shows the thread of the Zeo window you used last, or one you pin, and streams it as it is written. From the sidebar you can send a message — with elements picked on the page, screenshots and, on Chrome, a recording of the console and network — stop the turn, answer a permission and open the thread in Zeo. It is the same thread, never a second session: what you send lands in Zeo's own queue, and the message box in Zeo keeps what you were typing (patch 0058).
 - The first time the extension connects, Zeo asks "A browser extension (<browser>, <id>) wants to read and drive your agent threads." with Allow and Deny. Allow is remembered; Deny holds until Zeo restarts; the question gives up after two minutes. Palette command `devtools bridge: revoke browser access` forgets every browser you allowed and disconnects it (patch 0058).
 - The ebuild installs the extension's host, `/usr/libexec/zeo-browser-host`, and the files that tell Chrome, Chromium and Firefox where it is. The browser starts it and it talks to Zeo over the same private socket as the devtools bridge; no network port is opened. Page content arrives in the thread marked as untrusted page data, with form values, editor text, tokens and link query values removed before it leaves the page (patch 0058).
-
-- Hovering the context ring asks Claude Agent (Plus) for your 5-hour, weekly and per-model quota right then, and the tooltip updates while it is open, instead of showing what arrived last. At most one request every 5 seconds. Needs an adapter that offers it (`_claude/usage`, the claude-agent-acp-plus release after 0.26.0); between hovers the adapter now refreshes the quota every 30 seconds instead of 60 while the thread is idle (patch 0060).
-
+- Hovering the context ring asks Claude Agent (Plus) for your 5-hour, weekly and per-model quota right then, and the tooltip updates while it is open, instead of showing what arrived last. At most one request every 5 seconds. Needs claude-agent-acp-plus 0.27.0 or later; between hovers the adapter now refreshes the quota every 30 seconds instead of 60 while the thread is idle (patch 0060).
 - Creating a git worktree is refused when the repository's own git config names a program the checkout would run (includeIf, a filter driver, a Git LFS custom transfer agent or extension) or cannot be read. The error names the setting, and nothing is created (patch 0062).
 
 ### Changed
