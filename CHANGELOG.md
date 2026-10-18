@@ -27,6 +27,11 @@ reasoning.
 
 ## [0.5.1] — 2026-10-18
 
+A fix and a security release, built on the Zed snapshot of 2026-10-17: Open Log no
+longer crashes Zeo on a large log, and extensions and HTTPS run on patched wasmtime and
+rustls. Ships as `app-editors/zeo` and as the prebuilt `zeo-bin`, `.deb`, `.rpm`,
+AppImage and Flatpak.
+
 ### Fixed
 
 - Open Log on a background task no longer crashes Zeo when the task's output is larger than 1 MiB and contains characters longer than one byte, such as accented letters or the `�` that stands for bytes that are not valid text. The log still keeps the last 1 MiB, starting at the beginning of a line (patch 0056).
