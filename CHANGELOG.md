@@ -17,6 +17,13 @@ reasoning.
 
 ## [Unreleased]
 
+## [0.6.0] — 2026-10-19
+
+Zeo learns to listen and to plan: voice input dictates into the agent composer, transcribed
+on this machine, and a read-only Epic Stories panel follows a project's `.epic/` stories
+live. The agent sidebar can be reordered by dragging, and a devtools panel puts your web
+app and a chat with the agent side by side, on a devtools thread of the project.
+
 ### Added
 
 - A devtools panel for your web app, under USE `devtools-panel` (on by default; it needs `browser-extension`). With the `zeo-devtools` Vite plugin, `vite dev` also serves a panel page: your app on the left, a chat with the agent on the right, on its own port of the same host. The chat is a thread in Zeo — a devtools thread of that project — so you can open it in Zeo's thread list and write to it from the editor too. The panel sees only its project's devtools threads, never your other threads, and works only while the project is open in Zeo: close the project and the panel's chat is disabled until you open it again. A devtools thread is kept once it has its first message; an empty one is gone after a restart (patch 0063).
