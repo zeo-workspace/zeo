@@ -17,6 +17,16 @@ reasoning.
 
 ## [Unreleased]
 
+### Added
+
+- Thread tags. Right-click a thread in the agent sidebar, or in its Pinned section, and choose "Tags…" (right after "Pin Thread"). A picker lists every tag you already use, with this thread's own tags checked: type to narrow it, press Enter to add or remove the selected tag, or pick "Add tag “…”" for a new one. The picker stays open so you can set several tags in one go, keeps the tag you just confirmed selected, and closes on Escape. A leading `#` in what you type is ignored. A tag is 1 to 32 characters with no space, `#` or `,`; tags are case-insensitive and keep the spelling first used (patch 0068).
+- Tag chips on thread rows: up to three tags in small labeled chips after the title, then "+N" for the rest; hovering them lists every tag. A long title ends in an ellipsis so the chips stay visible. Chips update in every window and survive a restart (patch 0068).
+- The `#tag` filter. Type `#php` in the sidebar's search box to see only the threads tagged php, across every project and in the Pinned section; `#php login` also requires the title, worktree name or project label to match "login", as plain search always has; several `#` terms must all match. A project shows only when one of its threads matches. A `#` term hides terminal and draft rows, and like any search text it turns off dragging. Hidden threads keep their unread mark and their place in the thread switcher. The same `#tag` filter works in the History view, under All or Archived. A `#` term that is not a valid tag is searched as plain text, so a title such as "Fix #123" is found by typing `123` (patch 0068).
+
+### Changed
+
+- With USE `devtools-panel`, patch 0063 now builds on 0068: the thread-row badge it added moves into 0068, which lets a row carry several badges, and the "Devtools threads only" view combines with a `#tag` filter.
+
 ## [0.6.0] — 2026-10-19
 
 Zeo learns to listen and to plan: voice input dictates into the agent composer, transcribed
