@@ -31,6 +31,19 @@ reasoning.
 - With USE `devtools-panel`, patch 0063 now builds on 0068: the thread-row badge it added moves into 0068, which lets a row carry several badges, and the "Devtools threads only" view combines with a `#tag` filter.
 - With USE `devtools-panel`, patch 0063 also fills its devtools flag in the Lists view's rows of 0069, so the badge shows there too.
 
+## [0.6.1] — 2026-10-21
+
+Zeo moves to a newer Zed snapshot and follows three of its behaviour changes: reopening a thread no
+longer applies settings defaults, a thread still being confirmed cannot be archived, and connections
+try the newer agent protocol first.
+
+### Changed
+
+- Reopening a thread restores the options it recorded and nothing else. An option the thread never recorded keeps the agent's own value instead of the default from your settings, as in Zed. Settings defaults still apply to new threads (patches 0036, 0059).
+- A thread whose background tasks are still running, or whose state Zeo has not confirmed yet after a reopen, cannot be archived with the archive action, and its archive button is hidden. The thread's context menu still offers "Archive Thread", as Zed does for a running thread (patch 0029).
+- Connecting to an agent now tries ACP v2 first and falls back to v1. Claude Agent (Plus) answers v1, so it keeps working, but each connection briefly starts a second adapter process. Under `ai-jail` the v2 attempt runs inside the jail like the v1 one: in the jail's working directory, with its cleared environment, never through your login shell (patches 0001, 0057).
+- The browser extension's channel reports a thread waiting for that confirmation as `unconfirmed` and accepts a message sent from the browser, as the composer does. zeo-browser 0.1.0 does not know that state yet and ignores updates that carry it (patch 0058).
+
 ## [0.6.0] — 2026-10-19
 
 Zeo learns to listen and to plan: voice input dictates into the agent composer, transcribed
