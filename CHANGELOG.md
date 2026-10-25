@@ -17,6 +17,14 @@ reasoning.
 
 ## [Unreleased]
 
+## [0.7.0] — 2026-10-25
+
+Zeo learns to organize and branch threads: tags with a `#tag` filter, thread lists in a third
+sidebar view, sub-threads opened from a selection in an agent's reply, and Send to Parent to
+bring a sub-thread's answer back, with sub-threads listed in the Agent Tasks panel and the tasks
+card. Built on the same Zed snapshot as 0.6.1. No `zeo-bin` 0.6.1 was built, so `zeo-bin` 0.7.0
+also carries 0.6.1's changes.
+
 ### Added
 
 - Thread tags. Right-click a thread in the agent sidebar, or in its Pinned section, and choose "Tags…" (right after "Pin Thread"). A picker lists every tag you already use, with this thread's own tags checked: type to narrow it, press Enter to add or remove the selected tag, or pick "Add tag “…”" for a new one. The picker stays open so you can set several tags in one go, keeps the tag you just confirmed selected, and closes on Escape. A leading `#` in what you type is ignored. A tag is 1 to 32 characters with no space, `#` or `,`; tags are case-insensitive and keep the spelling first used (patch 0068).
