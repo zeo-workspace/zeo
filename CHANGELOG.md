@@ -17,6 +17,31 @@ reasoning.
 
 ## [Unreleased]
 
+## [0.7.1] — 2026-11-01
+
+Zeo moves to the Zed 1.28.0 snapshot (`a4b39c38`). Every Zeo feature is carried over unchanged;
+what is new comes from Zed itself.
+
+### Changed
+
+- Agent checkpoints are gone, as in Zed 1.28.0: a message you sent to Zed's own agent no longer
+  offers "Restore Checkpoint". Zeo's message copy button and composer history never used them and
+  behave as before (patches 0014, 0044).
+- Zed's own agent now reports its subagents the way ACP subagents are reported, and a message
+  passed between a thread and its subagents is drawn as a linked card. Zeo's tasks card, Agent
+  Tasks panel and slash-command run button work as before next to them (patches 0029, 0034, 0045,
+  0056).
+- Zed's own agent compacts a long conversation more reliably: again later in the same turn when
+  needed, and with the summary placed before a prompt that was not answered yet.
+- The agent protocol library moves to agent-client-protocol 3.6.0. Claude Agent (Plus) keeps
+  working unchanged (patch 0001).
+
+### Security
+
+- Two vulnerable libraries bundled in the editor are updated by Zed 1.28.0: zip 0.6.6 (GHSA-8hxf-qr8p-62x4,
+  GHSA-m665-v7pm-7grj, RUSTSEC-2026-0367, -0368, -0369) and zstd-safe 5.0.2 (nine RUSTSEC-2026
+  advisories). Known advisories in the shipped dependency set drop from 48 to 43.
+
 ## [0.7.0] — 2026-10-25
 
 Zeo learns to organize and branch threads: tags with a `#tag` filter, thread lists in a third
