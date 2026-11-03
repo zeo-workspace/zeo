@@ -19,6 +19,8 @@ reasoning.
 
 ### Added
 
+- `claude` running in a terminal now sees your editor selection as you make it, so "this function" means what you selected. Switching to a terminal or panel keeps it; an editor with no file clears it (patch 0002).
+- "Mention Selection in Claude Code" (editor context menu, command palette, `ctrl-alt-shift-m`, `cmd-alt-shift-m` on macOS) puts the selected lines into `claude`'s prompt as `@file#L1-3`. With no `claude` connected to the workspace it says so. Hidden when AI is disabled (patch 0002).
 - Subagents an agent reports through ACP now appear in Zeo's tasks card, the moment the agent announces them: one row per subagent, labelled with its title, showing Running, Waiting (it needs you), Done, Failed, Canceled or Unknown. A subagent that was replayed when a thread loaded reads Unknown and offers no Stop (patch 0034).
 - Stop on a subagent's row cancels that subagent only; the parent thread and its other subagents keep running. When the agent does not allow it, Stop is disabled and says why; a cancel that fails says so on the row. Open shows the subagent's own thread (patch 0071).
 - The Agent Tasks panel lists live subagents under their parent thread and keeps them in its history, so they are still listed after a restart and can be archived and deleted like any task. Opening a subagent the parent's conversation no longer holds opens the parent at its card, with a notice. The task history gains a column, `child_session_id` (migration step 7); existing records are unchanged (patch 0071).
@@ -33,6 +35,10 @@ reasoning.
 
 - Opening a subagent goes through its parent thread, since a subagent is not a thread of its own in the sidebar (patch 0041).
 - Test helpers only: the Agent Tasks panel's test task carries the new subagent field (patch 0053).
+
+### Fixed
+
+- Closing a `claude` diff tab without choosing Keep or Reject no longer tells `claude` you rejected the change; it keeps the edit unsaved, as with VS Code. An open diff also no longer holds back the other messages on that connection (patch 0002).
 
 ## [0.7.1] — 2026-11-01
 
