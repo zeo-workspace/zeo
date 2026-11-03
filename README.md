@@ -97,6 +97,21 @@ privacy model and the pinned checksums.
   `cargo test -p voice_input`, `cargo test -p agent_ui voice` and
   `cargo test -p reqwest_client without_proxy`.
 
+## Native subagents
+
+When an agent reports subagents through ACP, Zeo's task surfaces read them from Zed's own
+subagent registry: the tasks card, the Agent Tasks panel and its history, zeo-systray, and
+the browser sidebar. A subagent appears as soon as it is announced, Stop cancels that
+subagent alone, and a thread whose subagent is still running reads Background in the
+sidebar and cannot be archived. When the agent's own task feed names the same subagent,
+the two become one row. Zed's subagent card, its awaiting-permission bar and its sidebar
+status cover these subagents too. Patches `0034`, `0038`, `0041`, `0056`, `0058`, `0071`
+and `0072` in `zed-patches`, story 064.
+
+- **Turning it off.** `"feature_flags": { "acp-beta": "off" }` in `settings.json` turns
+  off Zed's experimental ACP path, which Zeo turns on: from the next connection Zeo
+  speaks ACP v1 and offers agents no subagents (patch `0001`).
+
 ## Status
 
 **Early.** The rebrand is fully specified in [`docs/REBRAND.md`](docs/REBRAND.md) — every

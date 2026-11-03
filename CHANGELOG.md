@@ -17,6 +17,22 @@ reasoning.
 
 ## [Unreleased]
 
+### Added
+
+- Subagents an agent reports through ACP now appear in Zeo's tasks card, the moment the agent announces them: one row per subagent, labelled with its title, showing Running, Waiting (it needs you), Done, Failed, Canceled or Unknown. A subagent that was replayed when a thread loaded reads Unknown and offers no Stop (patch 0034).
+- Stop on a subagent's row cancels that subagent only; the parent thread and its other subagents keep running. When the agent does not allow it, Stop is disabled and says why; a cancel that fails says so on the row. Open shows the subagent's own thread (patch 0071).
+- The Agent Tasks panel lists live subagents under their parent thread and keeps them in its history, so they are still listed after a restart and can be archived and deleted like any task. Opening a subagent the parent's conversation no longer holds opens the parent at its card, with a notice. The task history gains a column, `child_session_id` (migration step 7); existing records are unchanged (patch 0071).
+- An agent's task feed can now name the subagent an entry describes (`childSessionId`, task contract version 3). When the same subagent arrives through the feed and through ACP, the two become one row, matched by the subagent's session and never by the title, so two subagents with the same title stay two rows; a malformed value is ignored (patch 0056).
+- zeo-systray is told once when a subagent ends out of view, like any task. A reopened thread whose subagents had already finished announces nothing (patch 0038).
+- Zed's own subagent surfaces cover ACP subagents: a subagent waiting for you reads "Waiting for you" and keeps its Stop, the bar listing subagents awaiting a permission includes them, and a subagent the parent never wrote to still gets its card, exactly one. The agent sidebar shows a thread as Background while one of its subagents runs and as waiting while one needs you, and refusing to archive it now says why: "This thread has running subagents", or "This thread has running tasks" (patch 0072).
+- With USE `browser-extension`, the browser sidebar's thread snapshot lists the thread's subagents with their status; zeo-browser 0.2.0 shows them, while 0.1.x drops a snapshot that carries them (patch 0058).
+- `"feature_flags": { "acp-beta": "off" }` in your settings now turns the experimental ACP path off, in any build, from the next connection on; Zeo then speaks ACP v1 and offers no subagents. It stays on by default (patch 0001).
+
+### Changed
+
+- Opening a subagent goes through its parent thread, since a subagent is not a thread of its own in the sidebar (patch 0041).
+- Test helpers only: the Agent Tasks panel's test task carries the new subagent field (patch 0053).
+
 ## [0.7.1] — 2026-11-01
 
 Zeo moves to the Zed 1.28.0 snapshot (`a4b39c38`). Every Zeo feature is carried over unchanged;
