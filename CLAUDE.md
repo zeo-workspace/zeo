@@ -62,6 +62,6 @@ describing `fork/`, `upstream/main`, `rerere`, or a daily rebase is from the fir
   crates buys nothing a user can see and costs a conflict on every refresh.
 - **The WIT package `zed:extension` never changes.** It is the ABI every Zed extension
   imports; renaming it stops every existing extension from loading.
-- `.epic/` is never committed.
+- `.epico/` is never committed.
 - Written artefacts are in English.
 - Zeo is not affiliated with Zed Industries, and the README says so in those words.

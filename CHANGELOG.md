@@ -31,8 +31,11 @@ reasoning.
 - With USE `browser-extension`, the browser sidebar's thread snapshot lists the thread's subagents with their status; zeo-browser 0.2.0 shows them, while 0.1.x drops a snapshot that carries them (patch 0058).
 - `"feature_flags": { "acp-beta": "off" }` in your settings now turns the experimental ACP path off, in any build, from the next connection on; Zeo then speaks ACP v1 and offers no subagents. It stays on by default (patch 0001).
 
+- The agent menu (the "…" button at the top of the agent panel) has a "ToDo" switch under Current Thread: it turns the agent's todo list on or off for this thread, and works before the first message too. It replaces the "Plan updates" switch that sat beside the model picker (patch 0073).
+
 ### Changed
 
+- The Epic Stories panel follows the plugin's rename to Epico: it reads `.epico/` and offers "Open EPICO.md", is titled "Epico Stories", and still reads `.epic/` in a project the plugin has not moved yet. Keyboard shortcuts and the panel's dock position are kept (patch 0066).
 - Opening a subagent goes through its parent thread, since a subagent is not a thread of its own in the sidebar (patch 0041).
 - Test helpers only: the Agent Tasks panel's test task carries the new subagent field (patch 0053).
 
