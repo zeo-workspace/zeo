@@ -17,6 +17,15 @@ reasoning.
 
 ## [Unreleased]
 
+## [0.8.0] — 2026-11-03
+
+Zeo sees the subagents an agent starts: they appear in the tasks card, the Agent Tasks panel and
+Zed's own subagent surfaces the moment the agent announces them, each one stoppable on its own.
+`claude` running in a terminal now follows your editor selection, the agent menu gains a "ToDo"
+switch, and the Epic Stories panel follows the plugin's rename to Epico. Same Zed snapshot as
+0.7.1 (`a4b39c38`). zeo-browser 0.2.0 is the companion release: it shows a thread's subagents,
+and 0.1.x drops a sidebar snapshot that carries them.
+
 ### Added
 
 - `claude` running in a terminal now sees your editor selection as you make it, so "this function" means what you selected. Switching to a terminal or panel keeps it; an editor with no file clears it (patch 0002).
