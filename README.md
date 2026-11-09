@@ -112,6 +112,27 @@ and `0072` in `zed-patches`, story 064.
   off Zed's experimental ACP path, which Zeo turns on: from the next connection Zeo
   speaks ACP v1 and offers agents no subagents (patch `0001`).
 
+## Settings that matter
+
+Several things people ask for are already there, behind a setting or a habit.
+
+- **Collapsed output.** Terminal and edit cards in the agent panel start expanded; turn
+  that off with `"agent": { "expand_terminal_card": false, "expand_edit_card": false }`.
+  Thinking blocks follow `"agent": { "thinking_display": … }`: `"auto"` (the default:
+  expanded while streaming, collapsed after), `"preview"`, `"always_expanded"` or
+  `"always_collapsed"`.
+- **MCP servers and Claude Code plugins.** Context servers enabled in Zeo already reach
+  the agent, and Claude Code's own plugins and skills already load in the agent's
+  session. Those two are the only surfaces Zed extensions and Claude Code plugins share
+  (MCP servers, bridged, and language servers); themes, grammars, Zed slash commands and
+  debug adapters have no counterpart on the Claude side.
+- **Thread titles.** Claude Agent (Plus) titles a thread from its first prompt. Until
+  then Zeo shows the prompt's first line. A rename stays local to Zeo.
+- **Code fences and quotes in the composer.** ```` ``` ```` and `>` are highlighted as
+  you type, and the message preview renders them (patch `0016`).
+- **Sending while the agent works.** Enter queues the message until the turn ends;
+  "Send Now" cancels the turn and sends it. Neither sends *during* the turn.
+
 ## Status
 
 **Early.** The rebrand is fully specified in [`docs/REBRAND.md`](docs/REBRAND.md) — every
