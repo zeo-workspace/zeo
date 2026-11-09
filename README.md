@@ -120,7 +120,10 @@ Several things people ask for are already there, behind a setting or a habit.
   that off with `"agent": { "expand_terminal_card": false, "expand_edit_card": false }`.
   Thinking blocks follow `"agent": { "thinking_display": … }`: `"auto"` (the default:
   expanded while streaming, collapsed after), `"preview"`, `"always_expanded"` or
-  `"always_collapsed"`.
+  `"always_collapsed"`. Every other tool call — reads, searches, fetches, MCP calls — already
+  starts collapsed, and so does a subagent card's preview (except while it waits for your
+  permission). The tasks card can start as its pill with
+  `"agent": { "tasks_card": { "start_minimized": true } }`.
 - **MCP servers and Claude Code plugins.** Context servers enabled in Zeo already reach
   the agent, and Claude Code's own plugins and skills already load in the agent's
   session. Those two are the only surfaces Zed extensions and Claude Code plugins share
