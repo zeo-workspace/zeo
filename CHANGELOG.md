@@ -17,9 +17,10 @@ reasoning.
 
 ## [Unreleased]
 
-Wave 2 of the Zeo next proposal: cards you can trust. Planned as 0.9.0, on the same Zed
-snapshot as 0.8.0_p20261108 (`d2a4fb6d`). Claude Agent (Plus) 0.36.0 and zeo-systray 0.5.0 are
-the companion releases.
+## [0.9.0] — 2026-11-09
+
+Wave 2 of the Zeo next proposal: cards you can trust. Same Zed snapshot as 0.8.0_p20261108
+(`d2a4fb6d`). Claude Agent (Plus) 0.36.0 and zeo-systray 0.5.0 are the companion releases.
 
 ### Added
 
