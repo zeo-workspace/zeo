@@ -17,6 +17,31 @@ reasoning.
 
 ## [Unreleased]
 
+Wave 2 of the Zeo next proposal: cards you can trust. Planned as 0.9.0, on the same Zed
+snapshot as 0.8.0_p20261108 (`d2a4fb6d`). Claude Agent (Plus) 0.36.0 and zeo-systray 0.5.0 are
+the companion releases.
+
+### Added
+
+- Pause and Resume auto-scroll, a toggle among the conversation's floating controls. Paused, the view stays where you are even at the bottom, and a "N new" label counts what arrived since. Resume jumps to the end and follows again. Per thread (patch 0078).
+- The pending question card minimizes to one line above the composer — "Question pending · 2 questions" — and comes back with its chevron, or with `agent: toggle question card` from the keyboard. It opens again by itself once nothing is pending, so the next question never arrives hidden (patch 0082).
+- The tasks card: an "×" removes a finished row, or one whose state is Unknown, and "Clear finished" in its header removes them all. Running rows keep Stop. Only the card forgets them; the Agent Tasks panel keeps every record (patch 0080).
+- `"agent": { "tasks_card": { "start_minimized": true } }` starts the tasks card as its pill. Default `false`, today's open card (patch 0083).
+
+### Changed
+
+- The microphone moved to the end of the composer's left-hand group, next to Add Context, Preview, Follow, Fast and Thinking, instead of sitting beside Send (patch 0085).
+- The Pinned section remembers whether you collapsed it, across restarts (patch 0077).
+- The five-hour quota bar reads "5-hour limit", as `claude` and plus's `/usage` call it, instead of "Session (5h)" (patch 0074).
+- Copying your own message shows the green check and "Copied!" for two seconds, like every other copy button in the panel (patch 0075).
+- The tasks card and the expanded plan always draw their scrollbar when the list is longer than the card, instead of scrolling with no sign that there is more (patches 0080, 0081).
+
+### Fixed
+
+- A foreground task still reported running when its turn ends — cancelled, finished or failed — ends as interrupted, instead of staying "running" in the tasks card, the Agent Tasks panel and the tray until the session closed. A task moved to the background is left running (patch 0079).
+- With USE `browser-extension`, the browser sidebar's Stop is answered only once the turn actually stopped; a cancel the agent refuses now says so instead of reading as done (patch 0084).
+- An agent that reports its tasks over ACP v2 now fills the tasks card and the sidebar's Background status too; only v1 updates were read (patch 0076).
+
 ## [0.8.0] — 2026-11-03
 
 Zeo sees the subagents an agent starts: they appear in the tasks card, the Agent Tasks panel and
