@@ -17,6 +17,17 @@ reasoning.
 
 ## [Unreleased]
 
+## [0.9.1] — 2026-11-09
+
+Fixes to Wave 2, from the operator's first session on 0.9.0. Same Zed snapshot as
+0.9.0_p20261109 (`483b746b`).
+
+### Fixed
+
+- The composer's selectors are back in the agent's order, Mode first: Zed `483b746b` had reversed the row, so Claude Agent's Mode sat last, beside Send (patch 0086).
+- The tasks card hides once its last row is removed, instead of staying on screen empty. Minimized with nothing running, it no longer shows a spinning "0": it counts what it holds under a still icon. A running subagent thread now counts as running (patch 0080).
+- The question card's minimize button sits inside the card, in its header after "Waiting for input", instead of over the card's corner, outside its border (patch 0082).
+
 ## [0.9.0] — 2026-11-09
 
 Wave 2 of the Zeo next proposal: cards you can trust. Same Zed snapshot as 0.8.0_p20261108
