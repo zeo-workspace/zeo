@@ -17,6 +17,12 @@ reasoning.
 
 ## [Unreleased]
 
+Wave 3 of the Zeo next proposal, planned as 0.10.0. On Zed `f0d896f2` (0.9.1_p20261110: ACP 5.1.0, Claude Fable 5.2 in the native Anthropic provider).
+
+### Added
+
+- Message times. Each of your messages shows when you sent it, and each finished turn shows, under its last reply, when it ended and how long it took ("09:16 · 1m 30s"). Hover for the full date. Always on, whatever `show_turn_stats` says. Times come from Claude Agent (Plus) 0.37.0 or later, also for threads reopened from history; with another agent they show for live turns only (patch 0087).
+
 ## [0.9.1] — 2026-11-09
 
 Fixes to Wave 2, from the operator's first session on 0.9.0. Same Zed snapshot as
