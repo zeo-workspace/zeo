@@ -22,6 +22,28 @@ Wave 3 of the Zeo next proposal, planned as 0.10.0. On Zed `f0d896f2` (0.9.1_p20
 ### Added
 
 - Message times. Each of your messages shows when you sent it, and each finished turn shows, under its last reply, when it ended and how long it took ("09:16 · 1m 30s"). Hover for the full date. Always on, whatever `show_turn_stats` says. Times come from Claude Agent (Plus) 0.37.0 or later, also for threads reopened from history; with another agent they show for live turns only (patch 0087).
+- The context ring's tooltip says what its quota rows are: "Refreshing…" while they are being read, "Updated at 09:16:05" once they arrive, or "Refreshes when the turn ends" while a turn runs. A click on the ring refreshes them at once, for a pointer that cannot hover (patch 0089).
+- The tasks card can move to the bottom of the conversation: the "v" in its header turns it into a full-width bar above the message editor, as the question card's is, and "^" brings it back. The bar takes its own space instead of covering the conversation (patch 0092).
+- A thread can carry a description, a line saying what it is for: "Edit Description…" in the agent menu and in the thread's menu in the sidebar. It shows as an ⓘ beside the thread's title, in the agent panel and in the sidebar, with the text in its tooltip (patch 0096).
+- The tasks card's eye previews the task: what it printed, kept current while it runs, in a block that scrolls, and the card widens to read it. The chevron keeps the details (tokens, tools, summary). A watched task still notifies when it ends (patch 0094).
+- Agent Tasks panel rows carry the card's buttons: ↑ opens the thread at the task, ↓ sends a foreground task to the background, and the eye watches a running task and previews it in a pane under the list (patch 0095).
+- The Agent Tasks panel lists its tasks in pages: 10 per page by default, with ‹ and › and "11–20 of 134" under the list, and a menu for 25, 50 or 100 per page, remembered. A filter change returns to the first page (patch 0093).
+- "Terminals Minimized by Default" in the agent menu, under Conversation: inline terminals start collapsed, so a long run of commands takes less of the scroll. It sets Zed's `agent.expand_terminal_card`; terminals already on screen keep their state (patch 0090).
+- The About window titles Zeo's stage, "Zeo (αlpha)", shows the packaged Zed commit on the Zed row ("1.29.0+f0d896f"), and links to the Zeo and Zed repositories on GitHub (patch 0091; the ebuild passes the commit as `ZEO_UPSTREAM_COMMIT`).
+- Task tags. A background shell task in the tasks card carries a chip saying what it is for: CI (`gh run watch`, `act`), Test (`cargo test`, `npm test`, `pytest`…), Build (`cargo build`, `make`, `emerge`…) or Watch (`--watch`, `watchexec`…), beside its Foreground/Background chip. Claude Agent (Plus) 0.37.0 or later reads the command and sends only the tag, so the command itself never reaches Zeo; a task it cannot classify gets no chip (patch 0097).
+- "Install CLI" on Linux links `~/.local/bin/zeo` to the command shipped beside the editor, with no root, instead of a prompt saying the CLI should already be installed. A file already there is left alone unless it is that same link (patch 0098).
+- The context ring carries the 5-hour limit as a thin outer arc, in the warning colour when the agent flags it, so it shows without a hover. It appears only when the agent reports that window: a plan whose usage report has no 5-hour window keeps the ring as it was (patch 0099).
+- "Follow Log" on a running task's row in the Agent Tasks panel opens its log in a tab of the panel. The list stays the first tab, "Tasks"; one tab per task, with an X. The log keeps to its end as lines arrive, pauses when you scroll up to read, and "Follow" resumes; when the task ends the tab says so and stops reading. It reads only what is new each second with Claude Agent (Plus) 0.37.0 or later, and keeps the last 10,000 lines (patch 0100).
+- An expanded shell row in the tasks card keeps its last line of output once the task ends — "Finished release", "2 tests failed" — where before everything under its details went away. A subagent row on the subagents protocol shows what the subagent last said or ran (patch 0101).
+- The message you sent stays pinned at the top of the thread, minimized to its first line, while the reply scrolls under it. Scrolling back into an earlier turn pins that turn's message; it hides while the message itself is on screen. A click goes to the message; the chevron shows it whole (patch 0102).
+- A thread can be pinned to its project: "Pin to Project" in the thread's menu in the sidebar, above "Pin Thread". A project pin stays at the top of its project's group; the Pinned section keeps the threads pinned for every project. "Unpin Thread" undoes either, and both survive a restart (patch 0103).
+
+### Fixed
+
+- "Install CLI" no longer shows in the main menu once the `zeo` command is reachable: on the PATH, as a package installs it at `/usr/bin/zeo`, or in `~/.local/bin`, including a symlink you made yourself. It goes from the menu as soon as it installs (patch 0098).
+- In a background task's thread, the tasks card no longer covers the Stop Subagent and Minimize Subagent buttons; it now starts below that thread's titlebar (patch 0088).
+- Hovering the context ring refreshes the 5-hour and Weekly rows every second instead of every five, so they no longer look late (patch 0089).
+- A reopened thread's context ring shows how much of the context the thread had used, instead of an empty circle until the next message. The fix is in Claude Agent (Plus) 0.37.0.
 
 ## [0.9.1] — 2026-11-09
 
