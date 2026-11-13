@@ -15,9 +15,9 @@ A change that comes from a downstream patch names its number. The patch's
 header — `zed-patches/patches/<PF>/NNNN-*.patch`, above the `---` — carries the
 reasoning.
 
-## [Unreleased]
+## [0.10.0] — 2026-11-13
 
-Wave 3 of the Zeo next proposal, planned as 0.10.0. On Zed `f0d896f2` (0.9.1_p20261110: ACP 5.1.0, Claude Fable 5.2 in the native Anthropic provider).
+Wave 3 of the Zeo next proposal. Same Zed snapshot as 0.9.1_p20261110 (`f0d896f2`: ACP 5.1.0, Claude Fable 5.2 in the native Anthropic provider).
 
 ### Added
 
