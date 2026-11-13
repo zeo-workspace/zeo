@@ -15,6 +15,16 @@ A change that comes from a downstream patch names its number. The patch's
 header — `zed-patches/patches/<PF>/NNNN-*.patch`, above the `---` — carries the
 reasoning.
 
+## [0.10.1] — 2026-11-13
+
+A correction to 0.10.0's project pins, from the operator's first session on it. Same Zed snapshot (`f0d896f2`).
+
+### Changed
+
+- Pinning a thread now pins it to its project: the pin button on a row, the keyboard action and "Pin Thread" all do. The other scope is one entry away in the thread's menu, "Pin Globally", and a pinned thread can change scope there without being unpinned ("Pin Globally" or "Pin to Project") (patch 0103).
+- The active project's pins have a section of their own, "Pinned", after the project groups, and the pins of every project follow it under "Pinned Globally". Each section collapses on its own. In 0.10.0 a project pin only moved to the top of its group. A thread pinned to a project that is not the active one stays a row of that project's group until you switch to it (patch 0103).
+- Threads pinned before 0.10.0, and with "Pin Thread" on 0.10.0, are global pins and stay where they were, now under "Pinned Globally".
+
 ## [0.10.0] — 2026-11-13
 
 Wave 3 of the Zeo next proposal. Same Zed snapshot as 0.9.1_p20261110 (`f0d896f2`: ACP 5.1.0, Claude Fable 5.2 in the native Anthropic provider).
