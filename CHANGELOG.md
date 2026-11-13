@@ -15,6 +15,14 @@ A change that comes from a downstream patch names its number. The patch's
 header — `zed-patches/patches/<PF>/NNNN-*.patch`, above the `---` — carries the
 reasoning.
 
+## [0.10.3] — 2026-11-13
+
+A correction to the project pins, from the operator's session on 0.10.2. Same Zed snapshot (`f0d896f2`).
+
+### Fixed
+
+- With two projects in a window, a project that is not the active one no longer lists its pinned threads among its ordinary rows: its group shows only its unpinned threads, and its pins come back, in the "Pinned" section, when you switch to it. In 0.10.1 and 0.10.2 they reappeared as rows of that project's group (patch 0106).
+
 ## [0.10.2] — 2026-11-13
 
 Two corrections from the operator's session on 0.10.1. Same Zed snapshot (`f0d896f2`).
