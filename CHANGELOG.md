@@ -15,6 +15,18 @@ A change that comes from a downstream patch names its number. The patch's
 header — `zed-patches/patches/<PF>/NNNN-*.patch`, above the `---` — carries the
 reasoning.
 
+## [0.10.2] — 2026-11-13
+
+Two corrections from the operator's session on 0.10.1. Same Zed snapshot (`f0d896f2`).
+
+### Fixed
+
+- The tasks card no longer covers the pinned message at the top of a thread: it sits below it, and moves down when the message is expanded (patch 0104).
+
+### Changed
+
+- In an agent message's menu, "Sub-thread with context" is now "Fork to a sub-thread" and "Clean sub-thread" is now "Open to a new sub-thread". They do what they did (patch 0105).
+
 ## [0.10.1] — 2026-11-13
 
 A correction to 0.10.0's project pins, from the operator's first session on it. Same Zed snapshot (`f0d896f2`).
