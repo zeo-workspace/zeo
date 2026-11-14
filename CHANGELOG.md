@@ -15,6 +15,14 @@ A change that comes from a downstream patch names its number. The patch's
 header — `zed-patches/patches/<PF>/NNNN-*.patch`, above the `---` — carries the
 reasoning.
 
+## [Unreleased]
+
+Planned for 0.11.0.
+
+### Added
+
+- Code blocks and quotes in the agent composer look like blocks: every line of a ``` fenced block and of a `>` quote gets a background and a stripe on its left edge. Typing ``` on a line of its own closes the block below and leaves the cursor where the language name goes; one undo takes the closing fence back (patch 0107).
+
 ## [0.10.3] — 2026-11-13
 
 A correction to the project pins, from the operator's session on 0.10.2. Same Zed snapshot (`f0d896f2`).
