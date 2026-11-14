@@ -17,11 +17,17 @@ reasoning.
 
 ## [Unreleased]
 
-Planned for 0.11.0.
+## [0.11.0] — 2026-11-14
+
+Zed `f0fa51bb` (2026-11-14): `agent-client-protocol` 5.2.0 with schema 1.17, and Zed 1.30.0.
 
 ### Added
 
 - Code blocks and quotes in the agent composer look like blocks: every line of a ``` fenced block and of a `>` quote gets a background and a stripe on its left edge. Typing ``` on a line of its own closes the block below and leaves the cursor where the language name goes; one undo takes the closing fence back (patch 0107).
+
+### Fixed
+
+- On an agent panel wider than the conversation's column (`agent.max_content_width`, 850 px by default), the pinned user message, the question card and its bar, the tasks card -- floating, previewing or docked at the bottom -- and the floating navigation controls no longer span the whole panel: they keep to the same centred column as the messages and the composer (patch 0108).
 
 ## [0.10.3] — 2026-11-13
 
