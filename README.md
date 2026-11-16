@@ -1,146 +1,273 @@
-# Zeo
+<p align="center">
+  <img src="brand/rendered/app-icon-zeo.png" width="128" height="128" alt="Zeo">
+</p>
 
-Zeo is a rebranded build of the [Zed](https://zed.dev) editor: Zed's engine, a
-distinct visual identity, and a set of downstream refinements on top.
+<h1 align="center">Zeo</h1>
 
-**Zeo is not a fork.** It is a *patch set* applied to the exact Zed source commit that
-gets packaged, in the spirit of what Betterbird is to Thunderbird. There is no vendored
-copy of Zed here and no rebased branch to keep alive — the patches live in
-[`zeo-workspace/zed-patches`](https://github.com/zeo-workspace/zed-patches), each one written
-against a named upstream commit and re-verified whenever that commit moves.
+<p align="center">
+  <strong>The Zed editor, built for working with AI agents.</strong><br>
+  Zed's speed and engine, with an agent panel that shows what your agents are doing,
+  keeps your threads organized, and stays out of your way.
+</p>
 
-That choice is the whole design. A fork accumulates a merge debt that grows with every
-upstream release; a patch series states exactly what it changes, and stops applying —
-loudly — the moment upstream moves the ground under it.
+<p align="center">
+  <a href="https://github.com/zeo-workspace/zeo/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/zeo-workspace/zeo?label=release"></a>
+  <img alt="Platform" src="https://img.shields.io/badge/platform-Linux%20x86--64-informational">
+  <img alt="Stage" src="https://img.shields.io/badge/stage-alpha-orange">
+  <img alt="License" src="https://img.shields.io/badge/license-GPL--3.0--or--later-blue">
+</p>
 
-## Not affiliated with Zed Industries
+<p align="center">
+  <a href="#install">Install</a> ·
+  <a href="#what-zeo-adds">Features</a> ·
+  <a href="#auditable-by-design">How it is built</a> ·
+  <a href="CHANGELOG.md">Changelog</a> ·
+  <a href="SECURITY.md">Security</a>
+</p>
 
-Zeo is an independent project. It is **not** affiliated with, endorsed by, or supported
-by Zed Industries. "Zed" and the Zed logo are theirs; this project neither uses nor
-claims them. The Zeo mark in [`brand/`](brand/) is original work, constructed rather
-than traced — see [`brand/build-icon.py`](brand/build-icon.py), which generates it.
+---
 
-Zed is distributed under the GPL-3.0-or-later (with parts under Apache-2.0), and Zeo
-inherits those terms. Report Zeo problems here, never to Zed Industries.
+## Why Zeo
 
-## What lives where
+Zed is a fast, modern editor. Zeo takes Zed as it is and adds what you need once an AI agent
+works beside you all day:
 
-| | |
+- **You can see what the agent is doing.** Background tasks, subagents and shell output
+  have a place on screen, and you can stop any one of them.
+- **Your threads stay organized.** You can pin, tag, list, fork and rewind them.
+- **Your environment stays under your control.** Voice is transcribed on your machine, an
+  optional sandbox limits what the agent can touch, and nothing is sent without you.
+
+Zeo is built around **[Claude Code](https://www.anthropic.com/claude-code)** through
+[Claude Agent (Plus)](https://github.com/zeo-workspace/claude-agent-acp-plus), an
+[ACP](https://agentclientprotocol.com) adapter. Any ACP agent still works, and so does
+Zed's own agent.
+
+## What Zeo adds
+
+### Agent tasks you can follow
+
+- **Tasks card.** A card over the conversation lists every live task and subagent: what it
+  is running, its last output line, how long it has run. Each one has Stop, Send to
+  Background, Open, and a live preview of its output.
+- **Agent Tasks panel.** A history of every task, across threads and windows, that survives
+  restarts. It has filters, paging, selection and archiving, and **Follow Log** tails a
+  running task in a tab.
+- **Native subagents.** Subagents appear the moment the agent announces them, each one
+  stoppable on its own. "Waiting for you" tells you when one needs an answer.
+- **Task tags.** CI, Test, Build and Watch chips show at a glance what a background shell is
+  for.
+- **Tray notifications.** A task you watch can tell you when it ends out of view, through
+  [zeo-systray](https://github.com/zeo-workspace/zeo-systray) (optional).
+
+### Threads you can organize
+
+- **Pins** that apply to one project or to all of them, **tags** with a `#tag` search
+  filter, **lists** in a sidebar view of their own, and drag-to-reorder.
+- **Fork from any turn**, **Rewind to Here** (the conversation only, or the files too), and
+  **sub-threads** started from a selection, with **Send to Parent** to bring the answer back.
+- A **description** per thread, **message times** with the duration of each turn, and the
+  message you sent **pinned at the top** while the reply scrolls under it.
+
+### A composer that keeps up
+
+- **Voice input** (`ctrl-alt-v`, tap or hold) transcribed locally by
+  [whisper.cpp](https://github.com/ggml-org/whisper.cpp). The text lands unsent, so you can
+  fix it first.
+- **`/btw`** asks a side question while a turn runs, without adding it to the conversation.
+- **Steer** sends a queued message into the running turn without stopping it.
+- **Composer history** (Up and Down), code blocks and quotes rendered as blocks, and a
+  one-click **Run** for a slash command the agent recommends.
+- The **context ring** shows context usage and your 5-hour and weekly limits. A click opens
+  a full breakdown.
+
+### Safer by default
+
+- **Agent Sandbox** (optional). Run the agent inside
+  [ai-jail](https://github.com/zeo-workspace/ai-jail): the project is writable, `.git` is
+  read-only, your settings and credentials are out of reach, and only the hosts you allow
+  can be reached. A lock icon shows the sandbox state for each thread.
+- **Nothing leaves without you.** The speech model is downloaded only after you agree, and
+  it is checksum-pinned. Elements picked in a browser wait in the composer until you send
+  them.
+- **Security fixes ahead of upstream** when a reachable advisory needs one. See the
+  *Security* sections of the [changelog](CHANGELOG.md).
+
+### Beyond the editor
+
+- **[zeo-browser](https://github.com/zeo-workspace/zeo-browser).** A Chrome sidebar on the
+  same agent thread. It can attach page elements, screenshots and console or network
+  recordings.
+- **[zeo-devtools](https://github.com/zeo-workspace/zeo-devtools).** A Vite and Astro
+  plugin: click an element in your dev page, and its source lines land in the composer.
+- **Claude Code in the terminal.** `claude` follows your editor selection, and "Mention
+  Selection in Claude Code" sends lines to its prompt as `@file#L1-3`.
+
+The full list, version by version, is in the [changelog](CHANGELOG.md).
+
+## Install
+
+Zeo runs on **Linux x86-64**. The prebuilt packages need a CPU with **x86-64-v3** (AVX2, on
+Intel Haswell or AMD Excavator and later) and **glibc 2.35** or newer. On an older CPU, build
+from source.
+
+### Prebuilt packages
+
+Download from the **[latest release](https://github.com/zeo-workspace/zeo/releases/latest)**:
+
+| Format | Install |
 |---|---|
-| [`brand/`](brand/) | the Zeo mark — SVG sources, the generator that builds it, the rendered icons, and their checksums |
-| [`CHANGELOG.md`](CHANGELOG.md) | what each Zeo version changed, newest first |
-| [`docs/RELEASING.md`](docs/RELEASING.md) | how Zeo is versioned, and how a version and a `zeo-bin` release are cut |
-| [`docs/`](docs/) | the rebrand's touch-point inventory, the roadmap, and the Visual Extension API research |
-| [`archive/`](archive/) | the first run (2026), kept as the record it is: story specifications, unpublished commits as patches, and the icon exploration renders |
-| `zeo-workspace/zed-patches` | **the patches themselves**, including the rebrand series |
-| the `bentoo` overlay | `app-editors/zeo`, which decides which patches apply |
+| Debian / Ubuntu `.deb` | `sudo apt install ./zeo_<version>_amd64.deb` |
+| Fedora / openSUSE `.rpm` | `sudo dnf install ./zeo-<version>.x86_64.rpm` |
+| Flatpak | `flatpak install --user ./Zeo-<version>-x86_64.flatpak` |
+| AppImage | `chmod +x Zeo-<version>-x86_64.AppImage && ./Zeo-<version>-x86_64.AppImage` |
+| Portable tarball | extract `zeo-<version>-x86_64.tar.xz` and run `zeo-<version>/usr/bin/zeo` |
 
-## Voice input
+Check the download against the release's checksums before you install it:
 
-The agent composer has a microphone button beside Send. It records you, turns the speech
-into text on this machine with [whisper.cpp](https://github.com/ggml-org/whisper.cpp),
-and puts the text in the composer unsent, so you can read and fix it before you send it.
-`ctrl-alt-v` (`cmd-alt-v` on macOS) does the same from the keyboard. Tap it to start and
-tap again to stop, or hold it to record until you let go. Escape cancels. The feature is
-patch `0067-voice-input.patch` in `zed-patches`. Its header carries the reasoning, the
-privacy model and the pinned checksums.
+```sh
+sha256sum --check --ignore-missing SHA256SUMS-<version>
+```
 
-- **USE flag.** `voice` on `app-editors/zeo` is on by default and needs
-  `claude-agent-acp-plus`. With it, the ebuild also pulls in
-  `app-accessibility/whisper-models[base]`. `USE=-voice` builds Zeo without the patch:
-  no button and no whisper.cpp. The ebuild builds whisper.cpp for the CPU your
-  `CFLAGS` `-march` names (`GGML_NATIVE=OFF`, ggml's own x86 switches off). The
-  prebuilt release targets x86-64-v3.
-- **The model.** Zeo first looks in `/usr/share/whisper-models/ggml-<model>.bin`, which
-  `app-accessibility/whisper-models` installs. Otherwise it uses
-  `<data dir>/voice/models/`. A missing model is downloaded only after you click Download
-  in the strip above the composer. It comes from Hugging Face,
-  `ggerganov/whisper.cpp` at commit `5359861c739e955e79d9a303bcbc70fb988958b1`, and is
-  kept only if its size and SHA-256 match the pinned ones: `tiny` 78 MB, `base` 148 MB
-  (the default), `small` 488 MB.
-- **Settings**, under `"voice_input"` in `settings.json`:
+### Gentoo
 
-  ```json
+Zeo is packaged in the [`bentoo`](https://github.com/obentoo/bentoo) overlay:
+
+```sh
+eselect repository add bentoo git https://github.com/obentoo/bentoo.git
+emaint sync --repo bentoo
+emerge --ask app-editors/zeo       # from source, tuned to your CPU
+emerge --ask app-editors/zeo-bin   # or the prebuilt release
+```
+
+Features are USE flags. Most are on by default. `ai-jail` is off: turn it on for the agent
+sandbox.
+
+| USE | What it adds |
+|---|---|
+| `claude-agent-acp-plus` | Claude Agent (Plus), the agent panel refinements, and the base for the flags below |
+| `claude-agent-acp-tui` | the Claude Code terminal UI inside the agent panel |
+| `claude-code-ide` | the editor integration for `claude` running in a terminal |
+| `voice` | local voice input, with the `whisper-models` package |
+| `epic` | a read-only stories panel for projects planned with Epico |
+| `devtools-bridge` · `devtools-panel` · `browser-extension` | zeo-devtools, its panel, and zeo-browser |
+| `ai-jail` | the Agent Sandbox |
+
+Only one of `zed`, `zed-bin`, `zeo` and `zeo-bin` can be installed at a time.
+
+### Running it alongside Zed
+
+Zeo has its own binary (`zeo`), app id (`dev.zeo.Zeo`), state directories and URL scheme
+(`zeo://`, with `zed://` still accepted). Its settings and history never mix with a Zed
+install's. Zed extensions and themes work unchanged.
+
+## Auditable by design
+
+**Zeo is not a fork.** It is a set of plain-text patches applied to one exact, named Zed
+commit. Nothing is hidden in a private branch:
+
+- **Every change is readable.** The patches live in
+  [`zed-patches`](https://github.com/zeo-workspace/zed-patches). Each one has a header that
+  says what it changes and why.
+- **Every build is traceable.** Each release ships a `PROVENANCE` file with the Zed commit,
+  the SHA-256 of the source tarball, the compiler and flags, and the SHA-256 of every patch
+  in the order it was applied.
+- **Every build is reproducible.** The recipe is a public ebuild. Fetch the same Zed source,
+  apply the same patches, and compare.
+- **It fails loudly.** When Zed moves, each patch is checked again against the new commit. A
+  patch that no longer applies stops the build. Nothing drifts silently.
+
+A fork collects merge debt with every upstream release. A patch series states exactly what
+it changes, so you do not need to trust Zeo: you can read every line it adds. Changes that
+are useful beyond Zeo are offered back to Zed.
+
+## Configuration worth knowing
+
+Everything goes in `settings.json` (`zed: open settings`):
+
+```jsonc
+{
+  "agent": {
+    "expand_terminal_card": false,              // start terminal output collapsed
+    "expand_edit_card": false,                  // start edit diffs collapsed
+    "tasks_card": { "start_minimized": true }   // start the tasks card as a pill
+  },
   "voice_input": {
     "enabled": true,
-    "model": "base",
-    "language": "auto",
-    "remote": { "enabled": false, "url": null, "model": "whisper-1", "api_key_env": "ZEO_VOICE_API_KEY" }
-  }
-  ```
+    "model": "base",                            // tiny (78 MB) · base (148 MB) · small (488 MB)
+    "language": "auto",                         // or a code such as "en"
+    "remote": { "enabled": false }              // off: audio never leaves the machine
+  },
+  "feature_flags": { "acp-beta": "off" }        // fall back to ACP v1, with no subagents
+}
+```
 
-  `"enabled": false` hides the button and unbinds the shortcut. `language` is `auto` or
-  a lowercase two-letter code such as `en`. The remote service is off by default. Turned
-  on, it sends each recording as a WAV to the OpenAI-compatible endpoint in `remote.url`
-  (https, or plain http to a loopback host), with the API key read from the environment
-  variable named by `remote.api_key_env`. The key is never written to settings or
-  logged. In local mode Zeo opens no connection, apart from the model download you
-  agreed to.
-- **AltGr keyboard layouts on Windows** (Polish, German, …). There, `ctrl-alt-v` is the
-  same chord as `AltGr+v`. Either the shortcut fires instead of the character `AltGr+v`
-  types, or the character wins and the shortcut never fires. Rebind it in your keymap
-  (`zed: open keymap`). The tap and the hold work on any key you bind:
-
-  ```json
-  [
-    {
-      "context": "AcpThread",
-      "bindings": {
-        "ctrl-alt-v": null,
-        "alt-v": "voice_input::ToggleRecording"
-      }
-    }
-  ]
-  ```
-
-- **Tests**, in a tree with the series applied:
-  `cargo test -p voice_input`, `cargo test -p agent_ui voice` and
-  `cargo test -p reqwest_client without_proxy`.
-
-## Native subagents
-
-When an agent reports subagents through ACP, Zeo's task surfaces read them from Zed's own
-subagent registry: the tasks card, the Agent Tasks panel and its history, zeo-systray, and
-the browser sidebar. A subagent appears as soon as it is announced, Stop cancels that
-subagent alone, and a thread whose subagent is still running reads Background in the
-sidebar and cannot be archived. When the agent's own task feed names the same subagent,
-the two become one row. Zed's subagent card, its awaiting-permission bar and its sidebar
-status cover these subagents too. Patches `0034`, `0038`, `0041`, `0056`, `0058`, `0071`
-and `0072` in `zed-patches`, story 064.
-
-- **Turning it off.** `"feature_flags": { "acp-beta": "off" }` in `settings.json` turns
-  off Zed's experimental ACP path, which Zeo turns on: from the next connection Zeo
-  speaks ACP v1 and offers agents no subagents (patch `0001`).
-
-## Settings that matter
-
-Several things people ask for are already there, behind a setting or a habit.
-
-- **Collapsed output.** Terminal and edit cards in the agent panel start expanded; turn
-  that off with `"agent": { "expand_terminal_card": false, "expand_edit_card": false }`.
-  Thinking blocks follow `"agent": { "thinking_display": … }`: `"auto"` (the default:
-  expanded while streaming, collapsed after), `"preview"`, `"always_expanded"` or
-  `"always_collapsed"`. Every other tool call — reads, searches, fetches, MCP calls — already
-  starts collapsed, and so does a subagent card's preview (except while it waits for your
-  permission). The tasks card can start as its pill with
-  `"agent": { "tasks_card": { "start_minimized": true } }`.
-- **MCP servers and Claude Code plugins.** Context servers enabled in Zeo already reach
-  the agent, and Claude Code's own plugins and skills already load in the agent's
-  session. Those two are the only surfaces Zed extensions and Claude Code plugins share
-  (MCP servers, bridged, and language servers); themes, grammars, Zed slash commands and
-  debug adapters have no counterpart on the Claude side.
-- **Thread titles.** Claude Agent (Plus) titles a thread from its first prompt. Until
-  then Zeo shows the prompt's first line. A rename stays local to Zeo.
-- **Code fences and quotes in the composer.** ```` ``` ```` and `>` are highlighted as
-  you type, and the message preview renders them (patch `0016`).
-- **Sending while the agent works.** Enter queues the message until the turn ends;
-  "Send Now" cancels the turn and sends it. Neither sends *during* the turn.
+`voice_input.remote` can send recordings to an OpenAI-compatible endpoint instead. The API
+key is read from an environment variable and is never stored or logged. On Windows keyboard
+layouts that use AltGr, `ctrl-alt-v` is the same chord as `AltGr+v`. Rebind
+`voice_input::ToggleRecording` in your keymap if that conflicts.
 
 ## Status
 
-**Early.** The rebrand is fully specified in [`docs/REBRAND.md`](docs/REBRAND.md) — every
-constant, every decision, with its rationale — and the mark is finished and reproducible.
-What does not exist yet is an installable Zeo: the identity patches have to be written
-against the currently packaged Zed commit, and the ebuild after them.
+Zeo is **alpha**. It is used every day by its maintainer and released often, sometimes
+several times a week, and it has rough edges. Each release says which Zed version and
+commit it is built on (also shown in Zeo's About window). Only the latest release is
+supported.
 
-There is nothing to download here yet. When there is, it will say so.
+## The Zeo family
+
+| Project | What it is |
+|---|---|
+| **zeo** (this repository) | the product: brand, changelog, releases |
+| [zed-patches](https://github.com/zeo-workspace/zed-patches) | the patch series and the tooling that verifies it |
+| [claude-agent-acp-plus](https://github.com/zeo-workspace/claude-agent-acp-plus) | Claude Agent (Plus), the ACP adapter that powers the agent features |
+| [claude-agent-tui](https://github.com/zeo-workspace/claude-agent-tui) | the Claude Code terminal UI over ACP |
+| [zeo-systray](https://github.com/zeo-workspace/zeo-systray) | a tray indicator for agent sessions |
+| [zeo-browser](https://github.com/zeo-workspace/zeo-browser) | the browser sidebar on the same thread |
+| [zeo-devtools](https://github.com/zeo-workspace/zeo-devtools) | the element picker for Vite and Astro |
+| [ai-jail](https://github.com/zeo-workspace/ai-jail) | the sandbox the agent can run in |
+
+## Contributing and support
+
+- **Bugs and ideas:** [open an issue](https://github.com/zeo-workspace/zeo/issues). Include
+  the version from Zeo's About window, and use **Copy**: it gives the Zeo and Zed versions
+  together.
+- **Security issues:** report them privately, as [SECURITY.md](SECURITY.md) describes. Never
+  in a public issue.
+- **Code:** changes are patches against Zed. Start with
+  [`zed-patches`](https://github.com/zeo-workspace/zed-patches) and
+  [`docs/BUILD.md`](docs/BUILD.md).
+
+Inside this repository:
+
+| | |
+|---|---|
+| [`brand/`](brand/) | the Zeo mark: SVG sources, the script that generates it, rendered icons, checksums |
+| [`CHANGELOG.md`](CHANGELOG.md) | what each version changed, newest first |
+| [`docs/RELEASING.md`](docs/RELEASING.md) | how versions are numbered and releases are cut |
+| [`docs/REBRAND.md`](docs/REBRAND.md) | every constant the rebrand touches, with its reason |
+| [`archive/`](archive/) | the record of the first run (2026) |
+
+## Not affiliated with Zed Industries
+
+Zeo is an independent, community project. It is **not affiliated with, endorsed by,
+sponsored by or supported by Zed Industries, Inc.**
+
+- **All rights to Zed belong to Zed Industries, Inc. and its contributors.** That covers the
+  source code, the name "Zed", the Zed logo and every other trademark of theirs. Zeo claims
+  none of them.
+- Zeo uses Zed's source code under the licenses Zed chose: **GPL-3.0-or-later**, with some
+  parts under **Apache-2.0**. Zeo is distributed under the same terms; the license texts
+  are in [Zed's repository](https://github.com/zed-industries/zed) (`LICENSE-GPL`,
+  `LICENSE-APACHE`).
+- The Zeo name and mark are original work. The mark is generated by a script
+  ([`brand/build-icon.py`](brand/build-icon.py)), not traced from anything.
+- **Report Zeo problems here, never to Zed Industries.** A bug in Zeo may come from one of
+  its patches.
+
+Zeo and its companion projects are also unofficial with respect to **Anthropic**. "Claude"
+and "Claude Code" are Anthropic's trademarks.
+
+Zeo is provided **as is, without warranty of any kind**, as its licenses state. If you hold
+rights to something used here and object to how it is used, open an issue or write to the
+contact in [SECURITY.md](SECURITY.md). It will be addressed promptly.
