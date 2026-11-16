@@ -17,6 +17,24 @@ reasoning.
 
 ## [Unreleased]
 
+## [0.12.0] — 2026-11-15
+
+Same Zed `f0fa51bb`. The agent features below need Claude Agent (Plus) 0.38.0 or later; with an older adapter they stay hidden and Zeo behaves as before.
+
+### Added
+
+- Fork from any turn: every finished turn's controls have a fork button that opens a sub-thread carrying the conversation up to that turn (patch 0112).
+- Rewind to a turn: "Rewind to Here", beside the fork button, asks whether to rewind the conversation only or the files too, then opens the rewound conversation as a sub-thread and keeps the original (patch 0113).
+- A click on the context ring opens a "Context Usage" card above the composer: how full the context window is, a bar split by category and one row per category. "View Report" opens the full breakdown — tools, MCP servers, memory files, skills, subagents — as a Markdown document with its preview beside it. The hover tooltip is unchanged (patch 0114).
+- `/btw <question>` asks the agent a side question at once, even while a turn runs. The answer shows in a card above the composer that you can close, and never enters the conversation, so the agent does not see it on the next turn (patch 0115).
+- Steer now works with Claude Agent (Plus): the queue's Steer button and `Ctrl-Alt-S` send the queued message into the running turn without stopping it, and the message joins the thread where the agent took it. If the turn already ended, or the steer fails, the message goes back to its place in the queue (patch 0116).
+- A status bar button that opens the remote projects dialog, hidden with `status_bar.remote_projects_button` (patch 0110).
+- The order of the status bar's panel buttons can be set in Settings → Status Bar → Panel Button Order (patch 0111).
+
+### Changed
+
+- The pinned user message, when expanded, scrolls with a visible scrollbar; its expand/collapse toggle shows only when the minimized line hides something, and it sits on the panel's background (patch 0109).
+
 ## [0.11.0] — 2026-11-14
 
 Zed `f0fa51bb` (2026-11-14): `agent-client-protocol` 5.2.0 with schema 1.17, and Zed 1.30.0.
