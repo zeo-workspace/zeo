@@ -17,6 +17,10 @@ reasoning.
 
 ## [Unreleased]
 
+### Added
+
+- Settings → Agent Configuration → Ask Questions In Cards (`agent.ask_questions_in_cards`, on by default). Claude Agent (Plus) 0.39.0 and later asks the questions it needs answered through the question card instead of leaving them in its reply; turning this off keeps them in the reply. It applies to threads started or reopened afterwards. Other agents are unaffected (patch 0126).
+
 ## [0.13.0] — 2026-11-16
 
 Same Zed `f0fa51bb`. BTW on a queued message needs Claude Agent (Plus) 0.38.0 or later; with an older adapter the button stays hidden.
