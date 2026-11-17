@@ -17,10 +17,32 @@ reasoning.
 
 ## [Unreleased]
 
+## [0.13.0] — 2026-11-16
+
+Same Zed `f0fa51bb`. BTW on a queued message needs Claude Agent (Plus) 0.38.0 or later; with an older adapter the button stays hidden.
+
 ### Added
 
 - File → Open Recent File… (also `projects: open recent file` in the command palette) lists the files you opened lately, in any window, most recent first, including files outside any project. Each shows the project that holds it, or "No project"; typing filters the list, and a pick opens the file in the current window. Files that no longer exist drop out of the list. The menu's "Open Recent…" is now "Open Recent Project…" (patch 0117).
 - zeo-bin carries its own remote server: opening a project over SSH (or in a container) on a Linux x86-64 host that has no Zeo server uploads the one installed beside the editor, so a remote project works with nothing set up on the other side. `ZEO_REMOTE_SERVER` points at another build. The server is built for x86-64-v3; on an older CPU Zeo says so instead of failing silently. The source-built `zeo` package carries none and is unchanged (patch 0124).
+- Text in quotation marks — `"…"`, `“…”`, `„…“`, `«…»`, `‹…›`, `「…」`, `『…』`, and `‘…’` after a space — gets a coloured background in the composer and in the sent message, marks included. Apostrophes (`don't`, `d'água`), quotes inside code and an inch mark like `6'2"` stay plain. Only the look changes; the agent receives the same text (patch 0122).
+- Thread lists belong to a project or are global, as pins do. With a project in front, its lists come first under "This Project", then the global ones under "Global"; another project's lists stay hidden until that project is in front. "New List" makes a list of the project in front and "New Global List" a global one; a list's menu has "Make Global" and "Move to This Project", and "Move to List" offers only the thread's project's lists and the global ones. Lists you already had stay global (patch 0123).
+- Tool, terminal and edit cards have three states — collapsed (one line, cut with `…`), minimized (the whole command or title) and maximized (with the output, diff or input) — and the card's chevron steps through them. Each kind starts the way you choose under Terminal Cards, Tool Cards and Edit Cards in the agent menu, or in Settings (`agent.terminal_card_default`, `agent.tool_card_default`, `agent.edit_card_default`); until you choose, each keeps the look it had (patch 0125).
+- Each question of the question card has Clear while it has an answer, taking it — and its "Other" box — back to unanswered (patch 0119).
+- A queued message has BTW beside Steer: it leaves the queue and is asked on the side, answered in the "By the way" card and kept out of the conversation. A message with a mention or an image keeps it disabled, and the tooltip says why (patch 0121).
+
+### Changed
+
+- The agent menu's "Terminals Minimized by Default" is replaced by the Terminal Cards, Tool Cards and Edit Cards submenus; a terminal set to Maximized there is the old "expanded" (patch 0125).
+- The plan card's minimize button sits on the right, just before its close button, as the other cards have it (patch 0118).
+- "Open Thread at This Task" is offered only for a subagent running in the background that has a thread or output, in the tasks card and in the Agent Tasks panel (patch 0120).
+- The pinned message keeps the card's own background; only the text area inside it is dark (patch 0109).
+
+### Fixed
+
+- A sent message keeps the code-block and quote look the composer gave it (patch 0107).
+- In the native agent's model menu, hovering the default model no longer hides its pin: the pin and the check stay beside the star (patch 0010).
+- Turning the agent sandbox on no longer leaves the lock looking closed while the agent still runs outside it: the lock shows the change as pending, in the warning colour, and a click restarts the agent inside the sandbox, resuming the thread; with a turn running it asks first (patch 0057).
 
 ## [0.12.0] — 2026-11-15
 
