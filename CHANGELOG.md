@@ -20,6 +20,7 @@ reasoning.
 ### Added
 
 - File → Open Recent File… (also `projects: open recent file` in the command palette) lists the files you opened lately, in any window, most recent first, including files outside any project. Each shows the project that holds it, or "No project"; typing filters the list, and a pick opens the file in the current window. Files that no longer exist drop out of the list. The menu's "Open Recent…" is now "Open Recent Project…" (patch 0117).
+- zeo-bin carries its own remote server: opening a project over SSH (or in a container) on a Linux x86-64 host that has no Zeo server uploads the one installed beside the editor, so a remote project works with nothing set up on the other side. `ZEO_REMOTE_SERVER` points at another build. The server is built for x86-64-v3; on an older CPU Zeo says so instead of failing silently. The source-built `zeo` package carries none and is unchanged (patch 0124).
 
 ## [0.12.0] — 2026-11-15
 

@@ -59,6 +59,12 @@ indigo→teal gradient — **not derived from Zed's trademarked mark**.
   (no zed.dev fetch + a documented override) is met using the real override
   **`ZED_COPY_REMOTE_SERVER`** (point it at a prebuilt `zed-remote-server`); the error
   message cites it. See `.epic/…/.draft/deviations.yaml`.
+  **Corrected 2026-11-16:** `ZED_COPY_REMOTE_SERVER` (and `ZED_BUILD_REMOTE_SERVER`) are
+  read only with `debug_assertions` or the `build-remote-server-binary` feature, so a
+  release Zeo ignores them. Since patch 0124 the override for a release build is
+  **`ZEO_REMOTE_SERVER`**; without it, `zeo-bin` uploads the server it installs beside the
+  editor (`usr/libexec/zeo-remote-server`) to a Linux x86-64 host that has none. A
+  source-built `zeo` carries no server.
 - **CLI binary name.** The app binary is `zeo`; the CLI's cargo bin stays `cli` (a second
   `zeo` bin would collide in `target/`). The CLI is exposed as the `zeo` **command** only at
   packaging/install (story 007), mirroring upstream's `cli`→`zed` command relationship.
