@@ -11,3 +11,4 @@ ca89f90edc28c2a8d5fa98371d18a094160130eb12568ddeed40efd9ac97c1b8  rendered/app-i
 ca89f90edc28c2a8d5fa98371d18a094160130eb12568ddeed40efd9ac97c1b8  rendered/hicolor/512x512/apps/dev.zeo.Zeo.png
 87d42f8eea154597c671a2397567bf8f76a3c18387467fba07af826ae68fab38  rendered/app-icon-zeo@2x.png
 87d42f8eea154597c671a2397567bf8f76a3c18387467fba07af826ae68fab38  rendered/hicolor/1024x1024/apps/dev.zeo.Zeo.png
+22e6f0f5a9537942f7c9ff50d889d3112e4d1ed95343e417c7b7bce8064cfd0b  rendered/app-icon-zeo.ico
