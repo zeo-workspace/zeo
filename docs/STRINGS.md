@@ -36,7 +36,7 @@ is running.** Vendor, service, plan, team and hosted models stay "Zed".
 | **Font family names** — `Zed Mono`, `Zed Sans`, `Zed Plex Sans`, `Zed Icons` | 15 | values of `font_family:`; the file behind `Zed Mono` is *Lilex*, shipped under that alias. The editor stops finding its own font |
 | Vendor, plan, team, hosted models | 42 | states something untrue |
 | Tests, fixtures, examples | 31 | noise; and the window-title tests assert the *old* format |
-| Windows paths, `.exe`, `C:\Zed Data` | 19 | not built here |
+| Windows paths, `.exe`, `C:\Zed Data` | 19 | Zed's own Windows layout (updater, Explorer extension, data dir). "Not built here" stopped being true on 2026-11-18, when the Windows build (`0127`) began; these still stay because Zeo's Windows package ships none of those pieces — re-check any Windows string that becomes reachable |
 | `User-Agent` — `Zed/{} ({}; {})` | 3 | changes what remote servers see |
 | Theme names — `Zed (Default)` | 3 | breaks themes referenced from user settings |
 | `migrator.rs` literals | — | corrupts settings migration |
@@ -69,6 +69,11 @@ channel, the rebrand is free and cannot drift.
 **24 settings descriptions** and **154 log, error and macOS-only strings.** They
 are upstream UI copy — the churniest kind of file — so each one bought costs a
 `refresh.sh` conflict forever, for text read once or never.
+
+**Bought on 2026-11-18 after all** (see the last section): the operator chose to pay
+that churn for every literal that names the running application, settings
+descriptions and log text included. What stays below is what would be false or
+would break if renamed — not what is expensive.
 
 ## Why literals and not `display_name()`
 
@@ -146,3 +151,28 @@ does.
 string literal spread over four lines, and the scanner reads a literal one line at
 a time, so a multi-line literal is invisible to it. The rebrand baselines therefore
 did not change; a re-measurement that wants this class has to read across lines.
+
+## Re-triaged 2026-11-18 against `96362135` (Zeo 0.14.0)
+
+The accepted list (`zed-patches/rebrand/zed-literals.txt`) had grown to **327** entries
+since the last triage, through bumps that accepted new literals without classifying
+them. Every one was classified against the rule above, reading the code around each
+ambiguous one:
+
+| | Count | |
+|---|---|---|
+| renamed in `0025` | **76** | interface copy (`"<X> support is built-in to Zeo!"` ×16, `"restart Zeo"`, `"not compatible with this version of Zeo"`, `"Check the Zeo log"`), Settings descriptions (`"Optimize Zeo's interface…"`, `"when opening Zeo"`), log and error text (`"Handshake before Zeo spawn"`, `"Zeo managed Node.js"`) — plus the multi-line twin of the import-threads description in `thread_import.rs`, which the scanner cannot see |
+| kept, ambiguous | 22 | collaboration (the other person may be on Zed), Copilot sign-in (GitHub's page names Zed's OAuth app), telemetry ("Help improve Zed" — Zed's backend), server-reported versions, `Update Zed` (links zed.dev), developer `expect` texts. Operator: keep all |
+| kept | 229 | tests 54 · platform-only code 28 · service 25 · identifiers 24 · product names (`Zed Agent`, Zeta) 19 · plan 18 · protocol/User-Agent 16 · release channel 13 · vendor 9 · fonts 9 · URLs 8 · other 6 |
+
+**Names the app but must not change** — the rule's exceptions, each an interface:
+`Zed Agent` (the agent id stored in every native thread), the base keymap `"Zed"`, the
+menu name `"Zed"` (`f10` and user keymaps open it by name), the themes `Zed Default`,
+app ids and window classes, `Zed Keybind Context` (a language key), the telemetry event
+name, and the client names MCP, OAuth and DAP servers see.
+
+Each renamed line changes only `Zed` → `Zeo` inside the literal (checked: 77 line
+pairs, no other difference). The baseline went 327 → 251 with nothing added. The
+`///` doc comments that twin some Settings descriptions still say Zed in the schema
+hover text, as they did before.
+
