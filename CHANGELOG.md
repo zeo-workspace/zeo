@@ -17,6 +17,10 @@ reasoning.
 
 ## [Unreleased]
 
+## [0.14.0] — 2026-11-18
+
+Zed `96362135` (2026-11-18): `agent-client-protocol` 5.3.0 with schema 1.18.
+
 ### Added
 
 - Settings → Agent Configuration → Ask Questions In Cards (`agent.ask_questions_in_cards`, on by default). Claude Agent (Plus) 0.39.0 and later asks the questions it needs answered through the question card instead of leaving them in its reply; turning this off keeps them in the reply. It applies to threads started or reopened afterwards. Other agents are unaffected (patch 0126).
