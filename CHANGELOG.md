@@ -17,6 +17,15 @@ reasoning.
 
 ## [Unreleased]
 
+### Added
+
+- Zeo for Windows (x86-64, unsigned): a portable `.zip` and an installer, built from the same series (patch 0127). The installer installs per user with no elevation, registers `zeo://`, and puts `zeo` on the PATH; Windows SmartScreen asks once ("More info → Run anyway"). The 0.14.0 build is attached to its release.
+
+### Changed
+
+- 76 more strings say Zeo where they name the application you are running: the extension catalogue's "… support is built-in to Zeo!", "restart Zeo", "not compatible with this version of Zeo", Settings descriptions such as "Optimize Zeo's interface…" and "when opening Zeo", and log and error messages. What names Zed Industries' service, plan or models still says Zed (patch 0025; the rules: `docs/STRINGS.md`).
+- On Windows, the devtools panel's isolated window opens in Chromium or, failing that, Microsoft Edge, with the element picker's extension loaded; Google Chrome is still never used, since it ignores `--load-extension` (patch 0063).
+
 ## [0.14.0] — 2026-11-18
 
 Zed `96362135` (2026-11-18): `agent-client-protocol` 5.3.0 with schema 1.18.
