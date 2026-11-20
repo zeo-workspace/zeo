@@ -17,6 +17,19 @@ reasoning.
 
 ## [Unreleased]
 
+## [0.16.0] — 2026-11-20
+
+Zed `7279c76e` (2026-11-19): `agent-client-protocol` 5.4.0 with schema 1.19, and Zed's reorganised composer options (a fixed Mode/Model row, speed and effort beside Add Context, everything else under a new Agent Options menu).
+
+### Changed
+
+- Zeo's rules for agent options carry over to Zed's new layout: picking a value moves only this thread unless Shift is held, now also in the Agent Options menu's lists; a switch such as Fast mode applies to this session only, whether it is clicked, toggled from the Agent Options menu or with its key; Claude Agent (Plus)'s ToDo option stays in the agent menu and is not repeated under Agent Options (patches 0010, 0059, 0073).
+
+### Removed
+
+- Message times and turn durations on Zed Agent threads and on agents that use ACP v2, added in 0.15.0. Zeo's agent-side additions are for Claude Agent (Plus) and Claude Agent TUI, which keep their times (patch 0131 retired).
+- Zeo's own ordering of the composer's agent options (patch 0086 retired): Zed now draws Mode, then Model, whatever order the agent sends, which is what the patch was for, so nothing changes on screen.
+
 ## [0.15.0] — 2026-11-19
 
 Same Zed `96362135`.
