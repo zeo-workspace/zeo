@@ -17,6 +17,20 @@ reasoning.
 
 ## [Unreleased]
 
+## [0.17.0] — 2026-11-20
+
+Zed `0a514d7e` (2026-11-20): Zed now shows an external agent's authentication status in the agent menu; Zeo's question-placement and terminal toggles sit above it.
+
+### Changed
+
+- The row under the agent composer reads mode, model, effort, then the Agent Options button, beside Send. Effort moved there from the left-hand group, which is otherwise unchanged (patch 0135).
+- In Agent Options, Fast mode, Ultracode and Thinking are switches on their own row: a click on the switch or the name flips it, the menu stays open on the new state, and hovering the name shows its description. Thinking no longer opens a second menu (patch 0135).
+
+### Fixed
+
+- The avatar on the card that pins your last message at the top of the conversation is vertically centred (patch 0134).
+- Pressing Enter in a field of a question card no longer sends the whole card with the other questions skipped. The card goes out from Submit only, by click or by Tab then Enter; Shift-Enter still breaks a line (patch 0133).
+
 ## [0.16.0] — 2026-11-20
 
 Zed `7279c76e` (2026-11-19): `agent-client-protocol` 5.4.0 with schema 1.19, and Zed's reorganised composer options (a fixed Mode/Model row, speed and effort beside Add Context, everything else under a new Agent Options menu).
