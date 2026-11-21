@@ -17,6 +17,22 @@ reasoning.
 
 ## [Unreleased]
 
+## [0.18.0] — 2026-11-21
+
+Zed `2f808b3c` (2026-11-21).
+
+### Changed
+
+- The Agent Tasks panel lists only the tasks of the window's project, as the sidebar lists threads. "Delete All Archived" counts and deletes only those; a task whose thread was deleted is no longer listed (patch 0138).
+- A collapsed terminal card is one row: the command where the working directory was, and the directory in the command's tooltip. Minimized and expanded cards keep two rows (patch 0139).
+- The Welcome page offers "Open Recent File" under Get Started, after "Open Project" (patch 0140).
+- The default pin in the agent's mode, model and effort menus is Claude Agent (Plus)'s only, and sits beside the check and, on hover, the star at one size; hovering a row no longer hides the pin and the check. Zed Agent's menus no longer show it (patch 0137).
+
+### Fixed
+
+- A ``` code block keeps its look in a sent message and in the composer after the first message; it used to come and go. A line such as ```` ```text``` ```` no longer opens a block, and no closing fence is inserted in the middle of a dead-key or input-method composition (patch 0107).
+- With the Claude Code IDE integration (`/ide` in Zeo's terminal), Claude Code is told again which errors an edit introduced: `getDiagnostics` now answers in the shape the CLI reads, one entry per file, and takes `minSeverity` to leave out milder diagnostics (patch 0002).
+
 ## [0.17.1] — 2026-11-21
 
 Zed `0a514d7e` (2026-11-20), unchanged from 0.17.0.
