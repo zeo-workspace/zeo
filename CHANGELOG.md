@@ -17,6 +17,14 @@ reasoning.
 
 ## [Unreleased]
 
+## [0.17.1] — 2026-11-21
+
+Zed `0a514d7e` (2026-11-20), unchanged from 0.17.0.
+
+### Changed
+
+- Agent Options no longer shows a Thinking switch for a model that always thinks: there is nothing to choose. When it was the only option, the options button is gone too (patch 0136).
+
 ## [0.17.0] — 2026-11-20
 
 Zed `0a514d7e` (2026-11-20): Zed now shows an external agent's authentication status in the agent menu; Zeo's question-placement and terminal toggles sit above it.
