@@ -17,6 +17,20 @@ reasoning.
 
 ## [Unreleased]
 
+## [0.19.0] — 2026-11-21
+
+### Added
+
+- Resource limits for the agent sandbox: memory, CPU and processes for the whole jail (by default 8 GB, four CPUs, 4096 processes), set in `agent_sandbox.limits` and per project; `0` turns one off. If the installed ai-jail cannot apply them the agent does not start, and says what to install (patch 0141).
+- Each jailed project keeps its own home, `/tmp` and Claude login on disk, under `agent_sandbox.state_root` (`/var/tmp/zeo-jail`), instead of sharing `~/.claude-jailed` (patch 0141). A project logs in once: `CLAUDE_CONFIG_DIR=<its folder>/claude claude`.
+- A disk quota for the jail (`agent_sandbox.limits.disk_quota`, off by default): past it the agent is paused, not stopped -- its whole jail is frozen -- and the thread shows "Paused: disk quota" with Resume and Stop (patch 0141).
+- A Stop button beside the sandbox icon ends a jailed agent and everything it started (patch 0141).
+- The Agent Sandbox settings page sets the limits per project, picks writable folders with Choose Folder…, shows the project's state folder with its login command, and its generated command carries the limits and the state folder (patch 0141).
+
+### Changed
+
+- Needs `sys-apps/ai-jail-3.5.0-r1` or later when the `ai-jail` USE flag is on: the limits and the state folder are its options.
+
 ## [0.18.0] — 2026-11-21
 
 Zed `2f808b3c` (2026-11-21).
