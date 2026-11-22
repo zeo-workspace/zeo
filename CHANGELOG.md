@@ -17,6 +17,23 @@ reasoning.
 
 ## [Unreleased]
 
+## [0.21.0] — 2026-11-22
+
+Zed `2f808b3c` (2026-11-21), as in 0.20.0. MCP over ACP needs Claude Agent (Plus) 0.40.0 or later; with an older Plus, MCP servers reach it as before. The jail changes need USE `ai-jail` (on by default on Linux).
+
+### Changed
+
+- **A jail now receives only the MCP servers chosen for it, and none by default — `zeo-lsp` included.** Until 0.20.0 a jailed agent got every MCP server the jail could start, as its command line, secrets included. After upgrading, a jailed project's agent has no MCP servers until you turn them on in its Capabilities (see below), or list them in `agent_sandbox.capabilities.mcp_servers` for every project (patches 0150, 0152).
+
+### Added
+
+- Zeo's MCP servers reach Claude Agent (Plus) over ACP: Zeo runs each server once and answers the agent's requests for it, so nothing of the server — its process, its command line, its keys — is in the agent's process or its jail. Agents that cannot do this get the servers as before. On by default; `agent.mcp_servers_over_acp` turns it off (patches 0148, 0149).
+- `zeo-lsp`: Claude Agent (Plus) can ask Zeo's language servers for a file's diagnostics, a symbol's definition, references and hover, and a file's symbols. Read-only, local projects only; `agent.zeo_lsp` turns it off (patch 0151).
+- Both settings have rows in the Settings UI: "MCP Servers Over ACP" (`agent.mcp_servers_over_acp`) and "Zeo LSP For Agents" (`agent.zeo_lsp`) (patches 0149, 0151).
+- A jail's Capabilities, on the Agent Sandbox settings page: per project, which MCP servers (with `zeo-lsp`) it gets, whether Zeo's skills reach it, and claude.ai connectors. The defaults for every project are `agent_sandbox.capabilities` in `settings.json`; the page shows whether a value is the default or the project's own, and resets it. A change applies to the next thread, with no restart (patch 0152).
+- A server whose configuration carries a secret (an API key, a token, a password…) is listed with where the secret sits, never its value, and asks before it is turned on for a jail. It is never handed to a jail as configured: only proxied over ACP, and skipped, with the reason, for an agent that cannot proxy it (patch 0152).
+- A jailed thread says once which MCP servers are not enabled for its jail, and why, with an Open Capabilities button that opens the page at that block. It says it again only when that list changes, not on every reopen (patch 0152).
+
 ## [0.20.0] — 2026-11-22
 
 Zed `2f808b3c` (2026-11-21), as in 0.19.2. The sandbox changes need USE `ai-jail` (on by default on Linux).
