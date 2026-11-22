@@ -17,6 +17,33 @@ reasoning.
 
 ## [Unreleased]
 
+## [0.20.0] — 2026-11-22
+
+Zed `2f808b3c` (2026-11-21), as in 0.19.2. The sandbox changes need USE `ai-jail` (on by default on Linux).
+
+### Added
+
+- The composer shows a vertical scrollbar while a draft is taller than the box (patch 0142).
+- The pinned message opens with a short fade and a growing height instead of jumping open; with reduce motion on it opens at once, and closing is always instant (patch 0142).
+- A jail can reserve CPUs of its own: `agent_sandbox.limits.reserve_cpus` (global or per project, off by default), or the Pin button beside the thread's sandbox lock, gives it as many cores as its CPU quota, apart from every other reserving jail. When too few cores are free it shares the least-used ones and the lock says "Shares CPUs" (patch 0146).
+- Every jail hides the files that name the machine: `/etc/hostname`, `/etc/fstab`, `/etc/machine-id`, `/proc/cmdline`, the network interfaces and the DMI hardware data (patch 0146).
+- `agent_sandbox.mask_host` (per project, off by default) also gives the jail a host view sized to its limits: its CPUs and memory only, its own cgroup, a machine id of its own. It needs `sys-apps/ai-jail-3.5.0-r2`, and sandboxes nested inside the jail do not work with it (patch 0146).
+- Skills in `~/.agents/skills` and in a project's `.agents/skills` reach Claude Agent (Plus) as plugins, so they are managed from Zeo rather than through Claude Code; in a jail those folders are visible read-only (patches 0146, 0147).
+- Claude Agent (Plus) shows Claude's icon in the sidebar and on its threads, instead of a terminal (patch 0145).
+
+### Changed
+
+- The jail limits on the Agent Sandbox settings page are - / + steppers: sizes in their largest unit, CPU in steps of 100 %, processes in steps of 256, one save after you stop clicking (patch 0144).
+- The buttons on tool, terminal and edit cards say what they do in each state, the card steps from maximized to minimized instead of round in a ring, and the tasks pill ends in Maximize (patch 0143).
+- claude.ai connectors are off inside a jail; a project turns them back on with `agent_sandbox.claude_ai_connectors` (patch 0146).
+- With `agent_sandbox.mask_host`, `uptime` inside the jail reports the jail's own age, not the machine's (patch 0146, with `sys-apps/ai-jail-3.5.0-r2`).
+
+### Fixed
+
+- The pinned message's avatar no longer moves when the card expands (patch 0134).
+- A sidebar row whose turn ended while one of the agent's tasks still runs shows the background spinner again, instead of an idle icon (patch 0145).
+- In a jail, an MCP server whose program the jail cannot see is left out of the session with a notice in the thread, instead of being handed to an agent that cannot start it (patch 0146).
+
 ## [0.19.2] — 2026-11-22
 
 Zed `2f808b3c` (2026-11-21), as in 0.19.1.
