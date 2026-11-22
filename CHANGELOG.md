@@ -17,6 +17,19 @@ reasoning.
 
 ## [Unreleased]
 
+## [0.19.2] — 2026-11-22
+
+Zed `2f808b3c` (2026-11-21), as in 0.19.1.
+
+### Changed
+
+- The agent sandbox ships in every Linux build: USE `ai-jail` is on by default for `app-editors/zeo`, and zeo-bin, the packages and the tarball include it (zeo-bin's USE `ai-jail`, on by default, pulls in `sys-apps/ai-jail`). It turns nothing on by itself: each project's lock does. Windows leaves it out; ai-jail is Linux-only (patches 0057, 0141).
+- Without ai-jail installed, the thread's sandbox lock is disabled and its tooltip says what to install, and the Agent Sandbox settings cannot switch the sandbox on (they can still switch it off) (patch 0141).
+
+### Fixed
+
+- Turning the sandbox on or off and restarting the agent from the lock icon no longer fails with "Resource not found": the conversation is carried into the Claude config directory the restarted agent uses, so it continues where it was, and a thread with nothing to continue yet starts a new session (patch 0141).
+
 ## [0.19.1] — 2026-11-22
 
 Zed `2f808b3c` (2026-11-21), as in 0.19.0. Only the agent sandbox changes (USE `ai-jail`); the prebuilt builds behave as before.
