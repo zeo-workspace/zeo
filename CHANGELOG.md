@@ -17,6 +17,14 @@ reasoning.
 
 ## [Unreleased]
 
+## [0.19.1] — 2026-11-22
+
+Zed `2f808b3c` (2026-11-21), as in 0.19.0. Only the agent sandbox changes (USE `ai-jail`); the prebuilt builds behave as before.
+
+### Fixed
+
+- Logging in to a jailed agent from Zeo works: the login, which runs outside the jail so the browser can complete it, now writes to the project's own Claude config directory, where the jailed agent reads it. Before, the login went to `~/.claude` and the agent kept answering "Authentication required" (patch 0141).
+
 ## [0.19.0] — 2026-11-21
 
 Zed `2f808b3c` (2026-11-21), as in 0.18.0. Every change is the agent sandbox: it needs USE `ai-jail` on `app-editors/zeo`. The prebuilt builds (zeo-bin, the packages, Windows) leave that feature off, so they behave as 0.18.0.
