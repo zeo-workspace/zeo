@@ -17,6 +17,13 @@ reasoning.
 
 ## [Unreleased]
 
+## [0.24.0] — 2026-11-23
+
+Zed `f126950f` (2026-11-22), as in 0.22.x and 0.23.0. The jail changes need USE `ai-jail` and now `sys-apps/ai-jail` 3.5.0-r4 or later.
+
+### Added
+
+- "Hide the Kernel" on the Agent Sandbox page (`agent_sandbox.syscall_view`, off by default): under Hide the Host, `uname` and `sysinfo` are answered by ai-jail instead of the kernel, so `uname -r`, Python's `platform` and `getconf _PHYS_PAGES` report the same kernel version, memory and uptime as the jail's files instead of this machine's. Each of those calls makes a round trip to ai-jail; it needs ai-jail's `--syscall-view` (3.5.0-r4), and a jailed start that asks for it from an older ai-jail is refused and says how to turn it off (patch 0161).
 ## [0.23.0] — 2026-11-23
 
 Zed `f126950f` (2026-11-22), as in 0.22.x. The jail changes need USE `ai-jail` and now `sys-apps/ai-jail` 3.5.0-r3 or later.
