@@ -17,6 +17,27 @@ reasoning.
 
 ## [Unreleased]
 
+## [0.22.0] — 2026-11-23
+
+Zed `f126950f` (2026-11-22). The jail changes need USE `ai-jail` (on by default on Linux) and now `sys-apps/ai-jail` 3.5.0-r2 or later.
+
+### Changed
+
+- **A jailed agent no longer sees the machine's hardware by default.** "Hide the Host" (`agent_sandbox.mask_host`) is now on: the agent sees only the CPUs and memory its limits allow, its own cgroup and a machine id of its own. It also pins the jail to cores of its own. This hides; it does not isolate. It needs ai-jail's `--mask-host` (3.5.0-r2); with an older ai-jail a jailed start is refused and says how to turn it off (patch 0158).
+- "Reserve CPUs" moved from beside the thread's lock to the Agent Sandbox settings page, next to a new "Hide the Host" switch. Beside the lock only "Shares CPUs" remains, when a jail's cores are shared (patch 0158).
+- A `>` quote continues when you break the line or paste several lines into it, in the agent composer and in Markdown files; an empty quote line ends one level of the quote, as an empty list item ends a list (patch 0154).
+
+### Added
+
+- A fence of four or more backticks in the composer closes with as many backticks, so a code block can hold ``` (patch 0153).
+- Markdown files in the editor get the composer's look: fenced code and quotes read as blocks, text in quotation marks is highlighted, and a typed fence closes itself (patch 0155).
+- On the tasks card, "Open Thread at This Task" turns into "Back to the Main Thread" while that task's thread is on screen (patch 0156).
+- The jailed thread's "MCP servers not enabled" notice has a Restart Session button beside Open Capabilities, since a choice made there reaches the agent on its next start (patch 0157).
+
+### Fixed
+
+- What the eye ("Watch This Task") shows on the tasks card sits on the agent panel's background, not the editor's (patch 0156).
+
 ## [0.21.0] — 2026-11-22
 
 Zed `2f808b3c` (2026-11-21), as in 0.20.0. MCP over ACP needs Claude Agent (Plus) 0.40.0 or later; with an older Plus, MCP servers reach it as before. The jail changes need USE `ai-jail` (on by default on Linux).
