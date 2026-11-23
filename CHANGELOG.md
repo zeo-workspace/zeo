@@ -17,6 +17,14 @@ reasoning.
 
 ## [Unreleased]
 
+## [0.22.1] — 2026-11-23
+
+Zed `f126950f` (2026-11-22), as in 0.22.0. Needs USE `ai-jail`.
+
+### Fixed
+
+- A jailed agent could still read the names of the machine's encrypted volumes (`/etc/crypttab` is world-readable), its swap and disk sizes, every host CPU through the interrupt and scheduler tables, its NUMA and memory layout, and the kernel's exact build. Every jail now hides these too, Hide the Host on or off. What stays visible: the project's own disk and subvolume names and size (hiding them needs root on the host), the sources of `/usr`, `/etc` and `/opt`, and the kernel version that `uname` reports (patch 0159).
+
 ## [0.22.0] — 2026-11-23
 
 Zed `f126950f` (2026-11-22). The jail changes need USE `ai-jail` (on by default on Linux) and now `sys-apps/ai-jail` 3.5.0-r2 or later.
