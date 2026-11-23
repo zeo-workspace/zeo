@@ -17,6 +17,17 @@ reasoning.
 
 ## [Unreleased]
 
+## [0.25.0] — 2026-11-23
+
+Zed `f126950f` (2026-11-22), as in 0.22.x–0.24.0. The jail changes need USE `ai-jail` and `sys-apps/ai-jail` 3.5.0-r4 or later, as in 0.24.0.
+
+### Added
+
+- **Secrets in the settings window** (AI → Agent Configuration → Secrets). Tokens and API keys go to the system keyring, never to `settings.json`. The page lists them by their last three characters only. The value is readable while it is typed and cleared on Save. Each secret has a reference, `secret://SERVICE/ACCOUNT`, which an MCP server reads through azukari (`azukari --env NAME -- <server>`, with `NAME` set to the reference in the server's `env`). Saving the same service and account again replaces the item instead of adding a second one, which azukari would refuse (patch 0162).
+
+### Changed
+
+- **Hide the Disks is on by default.** A cargo build inside a jail measured no cost from it. With an ai-jail that lacks `--overlay-system`, the default is skipped and the jail still starts; a project that turned Hide the Disks on itself is still refused there (patch 0163).
 ## [0.24.0] — 2026-11-23
 
 Zed `f126950f` (2026-11-22), as in 0.22.x and 0.23.0. The jail changes need USE `ai-jail` and now `sys-apps/ai-jail` 3.5.0-r4 or later.
