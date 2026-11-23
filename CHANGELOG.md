@@ -17,6 +17,17 @@ reasoning.
 
 ## [Unreleased]
 
+## [0.23.0] — 2026-11-23
+
+Zed `f126950f` (2026-11-22), as in 0.22.x. The jail changes need USE `ai-jail` and now `sys-apps/ai-jail` 3.5.0-r3 or later.
+
+### Added
+
+- "Hide the Disks" on the Agent Sandbox page (`agent_sandbox.overlay_system`, off by default): under Hide the Host, `/usr`, `/etc` and `/opt` reach the jail through read-only overlays, so the jail's mount table names no disk of this machine for them. File walks over those folders get slower; it needs ai-jail's `--overlay-system` (3.5.0-r3), and a jailed start that asks for it from an older ai-jail is refused and says how to turn it off (patch 0160).
+
+### Changed
+
+- **Hide the Host hides more, through ai-jail 3.5.0-r3.** A jailed agent now also reads a kernel version without the distribution suffix, builder or build date, a generic OS name (`ID=linux`), no swap, a boot id of its own, an uptime and boot clock counted from the jail's start, and CPU topology that `lscpu` reads correctly. Hide the Host's note says what stays visible: the writable folders' disk and size, the CPU numbers, `cpuid` and the toolchains' own version strings (patch 0160).
 ## [0.22.1] — 2026-11-23
 
 Zed `f126950f` (2026-11-22), as in 0.22.0. Needs USE `ai-jail`.
