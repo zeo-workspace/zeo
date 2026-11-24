@@ -17,6 +17,14 @@ reasoning.
 
 ## [Unreleased]
 
+### Added
+
+- The groundwork for translating Zeo's own screens: a `ui_language` setting (a language tag
+  such as `pt-BR`; null follows the system's languages, falling back to English) applied
+  without a restart, and `en-XA`, a pseudo-locale of accented, lengthened English for
+  checking layouts. Nothing is translated yet, so nothing on screen changes; Zed's own
+  strings stay English. (0177)
+
 ## [0.27.0] — 2026-11-24
 
 Zed `c31063a0` (2026-11-23), as in 0.26.0. The jail changes need USE `ai-jail`; a host name per project needs `sys-apps/ai-jail` 3.5.0-r6, and an older one starts the jail as before.
