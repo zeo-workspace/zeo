@@ -17,6 +17,22 @@ reasoning.
 
 ## [Unreleased]
 
+## [0.26.0] — 2026-11-24
+
+Zed `c31063a0` (2026-11-23), up from `f126950f`. The jail changes need USE `ai-jail` and now `sys-apps/ai-jail` 3.5.0-r5 or later.
+
+### Added
+
+- **Pause the agent without losing anything.** A Pause button sits beside the lock of a running jail. It freezes the jail -- every process keeps its memory and connections -- and Resume goes on where it stopped. The paused label says "Paused" for your pause and "Paused: disk quota" for the disk watchdog's (patch 0165).
+- **"Hide the System Config"** on the Agent Sandbox page (`agent_sandbox.minimal_etc`, off by default): under Hide the Host, the jail's `/etc` holds only what its tools need -- accounts, DNS, certificates, time zone, the library loader, the shell's startup -- instead of all of this machine's configuration. `/usr` and `/opt` stay, since the toolchains live there. It needs ai-jail's `--minimal-etc` (3.5.0-r5); a jailed start that asks for it from an older ai-jail is refused and says how to turn it off (patch 0168).
+
+### Changed
+
+- **Stopping asks first.** Stop Generation -- the button, Escape in the composer and Cancel -- and Stop Subagent, on its card and its title bar, ask in a modal before they interrupt; "Keep Going" leaves the work running. The jail's Stop asks too, and names Pause as the way to keep the work (patches 0165, 0166).
+- **Archiving a thread with work running asks instead of refusing.** The modal says what still runs (the turn, subagents or background tasks); Archive stops the turn and archives the thread, Keep It leaves both. Work the agent started in the background may keep running until the agent ends it (patch 0167).
+- **The "Subagents Awaiting Permission" bar opens the subagent's thread**, where its permission prompt is, instead of only scrolling to the subagent's card (patch 0164).
+- A notice upstream added for unconfirmed messages says Zeo, not Zed (patch 0025).
+
 ## [0.25.0] — 2026-11-23
 
 Zed `f126950f` (2026-11-22), as in 0.22.x–0.24.0. The jail changes need USE `ai-jail` and `sys-apps/ai-jail` 3.5.0-r4 or later, as in 0.24.0.
