@@ -17,6 +17,26 @@ reasoning.
 
 ## [Unreleased]
 
+## [0.27.0] — 2026-11-24
+
+Zed `c31063a0` (2026-11-23), as in 0.26.0. The jail changes need USE `ai-jail`; a host name per project needs `sys-apps/ai-jail` 3.5.0-r6, and an older one starts the jail as before.
+
+### Added
+
+- **A Copy button on the `/btw` answer**, beside its close button (patch 0169).
+- **A host name of its own for each project's jail.** A jail that hides the host is named `desktop-` and six letters or digits, the same on every start of the project and different across projects, instead of `ai-sandbox` for all. The name is a hash of a secret kept on this machine and the project's path, so it says nothing about the path. ai-jail 3.5.0-r6 gives it to `hostname`, `/etc/hosts`, `/etc/hostname` and, under Hide the Kernel, `uname`; with an older ai-jail the jail keeps `ai-sandbox` (patch 0175).
+- **A "Zeo" badge** beside each setting Zeo added to Zed's own pages, and on the link and the title of a page that is Zeo's alone (Panel Button Order, Agent Sandbox, Agent Memory, Secrets), so a setting looked up in Zed's documentation is known to be Zeo's (patches 0172, 0173).
+- **Restart Agent on the Agent Sandbox page.** The "Restart the agent to apply." notice now has the button that does it: the project's agents running on older settings restart, and a thread in the middle of a turn asks first (patch 0171).
+
+### Changed
+
+- **The lock of an agent outside the jail opens a small modal** -- this project's jail switch and "Advanced…" for the full page -- instead of the whole Agent Sandbox page. A jail already on keeps opening the page, and a pending change keeps restarting the agent (patch 0174).
+- **Writable folders are added with the folder picker only.** The text field is gone from Writable Folders; the picker can only return a folder that exists. Allowed Hosts keep their field (patch 0170).
+
+### Fixed
+
+- **The `/btw` answer is drawn at the thread's text size.** It inherited a larger size and read 8/7 bigger than the same text in the thread (patch 0176).
+
 ## [0.26.0] — 2026-11-24
 
 Zed `c31063a0` (2026-11-23), up from `f126950f`. The jail changes need USE `ai-jail` and now `sys-apps/ai-jail` 3.5.0-r5 or later.
