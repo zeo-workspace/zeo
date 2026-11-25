@@ -35,6 +35,7 @@ reasoning.
 - The Secrets page, the tasks card and the /btw card in Brazilian Portuguese. The question card,
   the tool cards' menu and the BTW button sit inside Zed's own interface and stay English with
   it. (0180, 0181)
+- The Agent Tasks panel and the Epico panel in Brazilian Portuguese. (0182, 0183)
 
 ## [0.27.0] — 2026-11-24
 
