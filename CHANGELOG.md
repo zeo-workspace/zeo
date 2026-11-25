@@ -24,6 +24,10 @@ reasoning.
   without a restart, and `en-XA`, a pseudo-locale of accented, lengthened English for
   checking layouts. Nothing is translated yet, so nothing on screen changes; Zed's own
   strings stay English. (0177)
+- The Agent Sandbox settings page in Brazilian Portuguese, the first translated screen: with
+  `ui_language` set to `pt-BR`, or a system in Portuguese, its switches, notes, lists, limits,
+  capabilities and Memory section read in Portuguese ("jail", "sandbox" and "thread" stay as
+  they are). Errors and dialogs that come from the sandbox itself are still English. (0178)
 
 ## [0.27.0] — 2026-11-24
 
