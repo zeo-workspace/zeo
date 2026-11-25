@@ -27,7 +27,11 @@ reasoning.
 - The Agent Sandbox settings page in Brazilian Portuguese, the first translated screen: with
   `ui_language` set to `pt-BR`, or a system in Portuguese, its switches, notes, lists, limits,
   capabilities and Memory section read in Portuguese ("jail", "sandbox" and "thread" stay as
-  they are). Errors and dialogs that come from the sandbox itself are still English. (0178)
+  they are). (0178)
+- The rest of the Agent Sandbox in Brazilian Portuguese: why a start or an entry was refused,
+  the Turn Off, Forget and Allow dialogs, the lock's tooltip, Pause/Resume/Stop, the quick
+  modal and the MCP notice in the thread. A log line that quotes one of these errors now
+  follows the interface language; its field names stay English. (0179)
 
 ## [0.27.0] — 2026-11-24
 
