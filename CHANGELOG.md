@@ -32,6 +32,9 @@ reasoning.
   the Turn Off, Forget and Allow dialogs, the lock's tooltip, Pause/Resume/Stop, the quick
   modal and the MCP notice in the thread. A log line that quotes one of these errors now
   follows the interface language; its field names stay English. (0179)
+- The Secrets page, the tasks card and the /btw card in Brazilian Portuguese. The question card,
+  the tool cards' menu and the BTW button sit inside Zed's own interface and stay English with
+  it. (0180, 0181)
 
 ## [0.27.0] — 2026-11-24
 
