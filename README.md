@@ -113,23 +113,27 @@ newer. On an older CPU, build from source.
 
 ### Prebuilt packages
 
-Download from the **[latest release](https://github.com/zeo-workspace/zeo/releases/latest)**:
+Download from the **[latest release](https://github.com/zeo-workspace/zeo/releases/latest)**.
+Below, `<version>` is `<X.Y.Z>_p<YYYYMMDD>` (for example `0.29.0_p20261125`); the `.deb` and
+`.rpm` spell it `<X.Y.Z>.p<YYYYMMDD>-1`, as their package formats require.
 
 | Format | Install |
 |---|---|
-| Debian / Ubuntu `.deb` | `sudo apt install ./zeo_<version>_amd64.deb` |
-| Fedora / openSUSE `.rpm` | `sudo dnf install ./zeo-<version>.x86_64.rpm` |
+| Debian / Ubuntu `.deb` | `sudo apt install ./zeo_<X.Y.Z>.p<YYYYMMDD>-1_amd64.deb` |
+| Fedora / openSUSE `.rpm` | `sudo dnf install ./zeo-<X.Y.Z>.p<YYYYMMDD>-1.x86_64.rpm` |
 | Flatpak | `flatpak install --user ./Zeo-<version>-x86_64.flatpak` |
 | AppImage | `chmod +x Zeo-<version>-x86_64.AppImage && ./Zeo-<version>-x86_64.AppImage` |
 | Portable tarball | extract `zeo-<version>-x86_64.tar.xz` and run `zeo-<version>/usr/bin/zeo` |
 | Windows installer | run `Zeo-<version>-x86_64-setup.exe`: it installs per user, with no elevation. The build is unsigned, so SmartScreen asks once ("More info → Run anyway") |
 | Windows portable | extract `zeo-<version>-windows-x86_64.zip` |
 
-Check the download against the release's checksums before you install it (the Windows files
-are listed in `SHA256SUMS-windows-<version>`):
+Check the download against the release's checksums before you install it. The Linux packages
+(`.deb`, `.rpm`, Flatpak, AppImage, the tarball) are listed in `SHA256SUMS-portable-<version>`,
+the Windows files in `SHA256SUMS-windows-<version>`, and zeo-bin's tarball in
+`SHA256SUMS-<version>`:
 
 ```sh
-sha256sum --check --ignore-missing SHA256SUMS-<version>
+sha256sum --check --ignore-missing SHA256SUMS-portable-<version>
 ```
 
 ### Gentoo
