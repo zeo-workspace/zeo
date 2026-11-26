@@ -17,8 +17,26 @@ reasoning.
 
 ## [Unreleased]
 
+## [0.29.0] — 2026-11-26
+
+The same Zed snapshot as 0.28.1 (`6ba65ce3`). Nothing new is needed to install it: the
+translations are built into Zeo.
+
 ### Added
 
+- **Zeo speaks nine languages, Zed's own interface included.** A new **Language** page in Settings
+  picks the interface language: System (follow the desktop's languages), English, Português
+  (Brasil), Español, Français, Italiano, Deutsch, Русский, 日本語 or 简体中文, each listed by its
+  own name, plus the en-XA pseudo-locale for checking layouts. The choice applies at once, with no
+  restart. Until now only Zeo's own screens were translated; labels, buttons, tooltips, menus,
+  placeholders, dropdown values and the command palette now follow too, and the palette finds an
+  action by its English name or by its translated one. A screen not translated yet stays in
+  English (patches 0194, 0195).
+- **Spanish, French, Italian, German, Russian, Japanese and Simplified Chinese are machine
+  translations.** They were drafted with a translation service and revised, but no native speaker
+  has reviewed them yet, so the Language page says so after the name: "Deutsch (machine
+  translation)". Corrections are welcome. Chinese and Japanese text needs a CJK font, such as
+  Noto CJK, installed (patches 0196–0203).
 - **The agent panel's cards fade in** instead of popping up: the tasks card (expanded, as the pill
   or as the bar at the bottom), the /btw answer, the question card and its minimized bar. With
   reduced motion (the `reduce_motion` setting) they appear at once. `dev: dump input latency
