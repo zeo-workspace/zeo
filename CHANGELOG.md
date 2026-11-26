@@ -17,6 +17,24 @@ reasoning.
 
 ## [Unreleased]
 
+## [0.30.0] — 2026-11-26
+
+The same Zed snapshot as 0.29.0 (`6ba65ce3`).
+
+### Added
+
+- **Cards fade out when you close them**, the way they fade in: the /btw answer, a row of the
+  tasks card when you dismiss it or use "Clear finished", and the whole tasks card when its last
+  rows go. The "N new" label beside the floating thread controls fades in. With reduced motion
+  (the `reduce_motion` setting) everything still appears and goes at once. The question card
+  still closes at once: by the time it closes, the agent has already taken the answer
+  (patch 0204).
+- **The floating thread controls scroll instead of jumping.** Previous and next message, top and
+  end move the conversation over 200 ms and stop exactly where they used to; a jump longer than
+  a screen starts one screen before its target. Scrolling the wheel or dragging the scrollbar
+  stops it, the end is still reached at once while the agent is writing, and reduced motion
+  turns it off (patch 0205).
+
 ## [0.29.0] — 2026-11-26
 
 The same Zed snapshot as 0.28.1 (`6ba65ce3`). Nothing new is needed to install it: the
