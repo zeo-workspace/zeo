@@ -300,7 +300,7 @@ obligation.
 | Story | Phase | State |
 |---|---|---|
 | 001 | Identity layer | **To be re-specified** — executed once in the fork era, lost with it; spec intact in REBRAND.md §1 |
-| 002 | Visual identity | Nine commits exist as patches in `../archive/unpublished-commits/`, against snapshot `5f8a7413` — they need refreshing before adoption |
+| 002 | Visual identity | Nine commits exist as patches in [`archive/unpublished-commits/` at `a749fa4`](https://github.com/zeo-workspace/zeo/tree/a749fa4/archive/unpublished-commits), against snapshot `5f8a7413` — they need refreshing before adoption |
 | 003 | Modern chrome | Planned |
 | 004 | Extension API P1 (status bar) | Planned — research done (ZEO.md) |
 | 005 | Extension API P2 (panel) | Planned — research done (ZEO.md) |
@@ -312,5 +312,5 @@ complete specification, and no patch in the series.
 
 > References: [ZEO.md](ZEO.md) (complete technical research) · [REBRAND.md](REBRAND.md)
 > (the identity inventory, and the spec story 001 is rebuilt from) ·
-> [`../archive/`](../archive/) (the first run, including both stories' original
+> [`archive/` at `a749fa4`](https://github.com/zeo-workspace/zeo/tree/a749fa4/archive) (the first run, including both stories' original
 > specifications).

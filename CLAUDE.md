@@ -13,7 +13,7 @@ specification, and the reasoning — the patches themselves live in `zed-patches
 | what the rebrand touches, and why | [`docs/REBRAND.md`](docs/REBRAND.md) |
 | the Visual Extension API research | [`docs/ZEO.md`](docs/ZEO.md) |
 | the mark, and the script that builds it | [`brand/`](brand/) |
-| the first attempt, kept as a record | [`archive/`](archive/) |
+| the first attempt, kept as a record | [`../zeo-archive/`](../zeo-archive/) in the private workspace repository since 2026-11-26; the public history has it up to `a749fa4` |
 
 ## Since 2026-10-01 Zeo is the patched editor, not a side package
 
@@ -51,7 +51,7 @@ describing `fork/`, `upstream/main`, `rerere`, or a daily rebase is from the fir
 |---|---|
 | **the mark** | survived whole — `brand/build-icon.py` *constructs* it, so it is reproducible rather than merely stored |
 | **`docs/REBRAND.md`** | survived whole: it is an inventory of constants and decisions, and constants do not care how the diff is delivered |
-| **story 002's nine commits** | survived as `format-patch` in `archive/unpublished-commits/`, against snapshot `5f8a7413`; they need refreshing before adoption |
+| **story 002's nine commits** | survived as `format-patch` in `../zeo-archive/unpublished-commits/`, against snapshot `5f8a7413`; they need refreshing before adoption |
 | **story 001's five commits** | **did not survive** — they existed only in the deleted repository. `REBRAND.md` §1 documents all five, row by row, with rationale, so what was lost is the diff and not the reasoning |
 | **`scripts/sync-upstream.sh`** and its tests | gone with the fork model; `zed-patches`' `refresh.sh` and `bump.sh` do that job now |
 

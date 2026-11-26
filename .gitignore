@@ -5,3 +5,7 @@
 # here for a one-off experiment cannot be committed by accident, and so that
 # ../scripts/status.sh keeps watching the path for exactly that case.
 fork/
+
+# Moved to the private workspace repository (zeo-workspace/zeo-workspace, zeo-archive/) on
+# 2026-11-26; the public history keeps it up to then.
+/archive/

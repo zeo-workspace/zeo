@@ -34,4 +34,4 @@ should guess.
 
 > Everything else from that era is gone: `scripts/sync-upstream.sh`, the `rerere` cache,
 > the `zeo-pre-sync` rollback tag, the force-push-with-lease ritual. They belonged to a
-> branch that no longer exists. See [`../archive/README.md`](../archive/README.md).
+> branch that no longer exists. See [`archive/README.md` at `a749fa4`](https://github.com/zeo-workspace/zeo/blob/a749fa4/archive/README.md).
