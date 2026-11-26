@@ -17,6 +17,31 @@ reasoning.
 
 ## [Unreleased]
 
+## [0.28.1] — 2026-11-26
+
+A security release on the same Zed snapshot as 0.28.0 (`6ba65ce3`). It fixes the three findings of
+the security audit of 2026-11-21 that Zeo could reproduce. The first needs USE `ai-jail`.
+
+### Security
+
+- A jailed agent can no longer make Zeo run a program on your machine through git. The jail lets the
+  agent write the project, so it could create a repository inside it (or a `.git` at its root when
+  there was none) whose config named a filter, and Zeo's own `git status` then ran that filter
+  outside the jail, with no click. In a jailed project, Zeo now runs git with every filter and diff
+  driver the repository's own config defines switched off, and a repository the agent can write
+  runs as untrusted: no hooks, no custom ssh, credential or signing program. A file such a driver
+  converts, like a git-crypt file or an LFS file defined in the repository's own config, shows as
+  modified in Zeo's git views while the jail is on. Filters from your global git config, such as
+  Git LFS, still run (patch 0190; security audit of 2026-11-21).
+- Creating a worktree refuses a repository whose per-worktree config names a filter driver, whatever
+  spelling turns that config on. Before, `extensions.worktreeConfig = 2` (or `01`, `1k`, `-1`), which
+  git reads as true, let the filter through, and `git worktree add` ran it (patch 0062; security
+  audit of 2026-11-21).
+- The two default agents, Claude Agent (Plus) and Claude Agent TUI, can no longer be replaced by an
+  entry in the public ACP registry that uses the same id. Such an entry used to decide what the
+  default agent ran, and with which arguments and environment, even when the adapter came from
+  `/usr/bin`. It is now dropped and logged (patch 0033).
+
 ## [0.28.0] — 2026-11-25
 
 Zed `6ba65ce3` (2026-11-25), 54 upstream commits past 0.27.0's `c31063a0`. The translation needs
