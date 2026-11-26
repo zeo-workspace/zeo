@@ -65,8 +65,9 @@ Agent (Plus) with side questions (0.38.0 or later).
   (patch 0010).
 - Five new Zed strings say Zeo: the Bedrock provider's setup notes and two Windows sandbox
   errors (patch 0025).
-- Windows builds no longer ship AMD GPU Services (`amd_ags_x64.dll`), which Zed dropped
-  (patch 0127).
+- Windows builds start a little faster: they no longer load AMD GPU Services
+  (`amd_ags_x64.dll`), which Zed used only to word the driver version in crash reports.
+  AMD graphics cards work as before (patch 0127).
 
 ### Fixed
 
