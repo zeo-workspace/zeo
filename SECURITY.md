@@ -3,7 +3,7 @@
 Zeo is the Zed editor with a downstream patch series and a rebrand applied, packaged
 for Gentoo as `app-editors/zeo` (built from source) and `app-editors/zeo-bin`
 (prebuilt). This repository holds the brand and the rebrand's reasoning; the patches
-themselves live in [`zeo-workspace/zed-patches`](https://github.com/zeo-workspace/zed-patches).
+themselves live in [`zeo-workspace/zeo-patches`](https://github.com/zeo-workspace/zeo-patches).
 
 ## Supported versions
 

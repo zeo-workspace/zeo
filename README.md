@@ -12,7 +12,7 @@
 
 <p align="center">
   <a href="https://github.com/zeo-workspace/zeo/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/zeo-workspace/zeo?label=release"></a>
-  <img alt="Platform" src="https://img.shields.io/badge/platform-Linux%20x86--64-informational">
+  <img alt="Platform" src="https://img.shields.io/badge/platform-Linux%20%7C%20Windows%20x86--64-informational">
   <img alt="Stage" src="https://img.shields.io/badge/stage-alpha-orange">
   <img alt="License" src="https://img.shields.io/badge/license-GPL--3.0--or--later-blue">
 </p>
@@ -107,9 +107,9 @@ The full list, version by version, is in the [changelog](CHANGELOG.md).
 
 ## Install
 
-Zeo runs on **Linux x86-64**. The prebuilt packages need a CPU with **x86-64-v3** (AVX2, on
-Intel Haswell or AMD Excavator and later) and **glibc 2.35** or newer. On an older CPU, build
-from source.
+Zeo runs on **Linux x86-64** and **Windows x86-64**. The prebuilt Linux packages need a CPU
+with **x86-64-v3** (AVX2, on Intel Haswell or AMD Excavator and later) and **glibc 2.35** or
+newer. On an older CPU, build from source.
 
 ### Prebuilt packages
 
@@ -122,8 +122,11 @@ Download from the **[latest release](https://github.com/zeo-workspace/zeo/releas
 | Flatpak | `flatpak install --user ./Zeo-<version>-x86_64.flatpak` |
 | AppImage | `chmod +x Zeo-<version>-x86_64.AppImage && ./Zeo-<version>-x86_64.AppImage` |
 | Portable tarball | extract `zeo-<version>-x86_64.tar.xz` and run `zeo-<version>/usr/bin/zeo` |
+| Windows installer | run `Zeo-<version>-x86_64-setup.exe`: it installs per user, with no elevation. The build is unsigned, so SmartScreen asks once ("More info → Run anyway") |
+| Windows portable | extract `zeo-<version>-windows-x86_64.zip` |
 
-Check the download against the release's checksums before you install it:
+Check the download against the release's checksums before you install it (the Windows files
+are listed in `SHA256SUMS-windows-<version>`):
 
 ```sh
 sha256sum --check --ignore-missing SHA256SUMS-<version>
@@ -140,8 +143,8 @@ emerge --ask app-editors/zeo       # from source, tuned to your CPU
 emerge --ask app-editors/zeo-bin   # or the prebuilt release
 ```
 
-Features are USE flags. Most are on by default. `ai-jail` is off: turn it on for the agent
-sandbox.
+Features are USE flags. Most are on by default, `ai-jail` included: it turns nothing on by
+itself, because each project's lock does.
 
 | USE | What it adds |
 |---|---|
@@ -167,7 +170,7 @@ install's. Zed extensions and themes work unchanged.
 commit. Nothing is hidden in a private branch:
 
 - **Every change is readable.** The patches live in
-  [`zed-patches`](https://github.com/zeo-workspace/zed-patches). Each one has a header that
+  [`zeo-patches`](https://github.com/zeo-workspace/zeo-patches). Each one has a header that
   says what it changes and why.
 - **Every build is traceable.** Each release ships a `PROVENANCE` file with the Zed commit,
   the SHA-256 of the source tarball, the compiler and flags, and the SHA-256 of every patch
@@ -219,13 +222,14 @@ supported.
 | Project | What it is |
 |---|---|
 | **zeo** (this repository) | the product: brand, changelog, releases |
-| [zed-patches](https://github.com/zeo-workspace/zed-patches) | the patch series and the tooling that verifies it |
+| [zeo-patches](https://github.com/zeo-workspace/zeo-patches) | the patch series and the tooling that verifies it |
 | [claude-agent-acp-plus](https://github.com/zeo-workspace/claude-agent-acp-plus) | Claude Agent (Plus), the ACP adapter that powers the agent features |
 | [claude-agent-tui](https://github.com/zeo-workspace/claude-agent-tui) | the Claude Code terminal UI over ACP |
 | [zeo-systray](https://github.com/zeo-workspace/zeo-systray) | a tray indicator for agent sessions |
 | [zeo-browser](https://github.com/zeo-workspace/zeo-browser) | the browser sidebar on the same thread |
 | [zeo-devtools](https://github.com/zeo-workspace/zeo-devtools) | the element picker for Vite and Astro |
 | [ai-jail](https://github.com/zeo-workspace/ai-jail) | the sandbox the agent can run in |
+| [azukari](https://github.com/zeo-workspace/azukari) | a launcher that hands MCP servers their secrets from the keyring, never from a config file |
 
 ## Contributing and support
 
@@ -235,7 +239,7 @@ supported.
 - **Security issues:** report them privately, as [SECURITY.md](SECURITY.md) describes. Never
   in a public issue.
 - **Code:** changes are patches against Zed. Start with
-  [`zed-patches`](https://github.com/zeo-workspace/zed-patches) and
+  [`zeo-patches`](https://github.com/zeo-workspace/zeo-patches) and
   [`docs/BUILD.md`](docs/BUILD.md).
 
 Inside this repository:
@@ -246,7 +250,7 @@ Inside this repository:
 | [`CHANGELOG.md`](CHANGELOG.md) | what each version changed, newest first |
 | [`docs/RELEASING.md`](docs/RELEASING.md) | how versions are numbered and releases are cut |
 | [`docs/REBRAND.md`](docs/REBRAND.md) | every constant the rebrand touches, with its reason |
-| [`archive/`](archive/) | the record of the first run (2026) |
+| [`archive/` at `a749fa4`](https://github.com/zeo-workspace/zeo/tree/a749fa4/archive) | the record of the first run (2026), as it stood when it left this repository |
 
 ## Not affiliated with Zed Industries
 
