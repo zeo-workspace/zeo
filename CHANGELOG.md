@@ -17,6 +17,14 @@ reasoning.
 
 ## [Unreleased]
 
+### Added
+
+- **The agent panel's cards fade in** instead of popping up: the tasks card (expanded, as the pill
+  or as the bar at the bottom), the /btw answer, the question card and its minimized bar. With
+  reduced motion (the `reduce_motion` setting) they appear at once. `dev: dump input latency
+  histogram` now also reports how long the window takes to draw a frame, which is how the fades
+  were measured: they add their own frames and cost nothing per frame (patch 0193).
+
 ## [0.28.1] — 2026-11-26
 
 A security release on the same Zed snapshot as 0.28.0 (`6ba65ce3`). It fixes the three findings of
