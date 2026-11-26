@@ -17,8 +17,20 @@ reasoning.
 
 ## [Unreleased]
 
+## [0.28.0] — 2026-11-25
+
+Zed `6ba65ce3` (2026-11-25), 54 upstream commits past 0.27.0's `c31063a0`. The translation needs
+nothing installed; the jail changes need USE `ai-jail`, and the agent's summary needs Claude
+Agent (Plus) with side questions (0.38.0 or later).
+
 ### Added
 
+- **Summarize Session**, in the agent panel's options menu: a card with an ordered account of
+  the session -- what was asked, the last answer, the files changed, the commands run, what
+  failed, the plan and what is still open -- built from the thread with no tokens spent. With
+  Claude Agent (Plus), "By the agent" asks the agent for its own summary as a side question,
+  which never enters the conversation. Copy it, or open it as a new thread or as a sub-thread
+  of this one, with the summary in the composer, unsent (patch 0189).
 - The groundwork for translating Zeo's own screens: a `ui_language` setting (a language tag
   such as `pt-BR`; null follows the system's languages, falling back to English) applied
   without a restart, and `en-XA`, a pseudo-locale of accented, lengthened English for
@@ -36,6 +48,30 @@ reasoning.
   the tool cards' menu and the BTW button sit inside Zed's own interface and stay English with
   it. (0180, 0181)
 - The Agent Tasks panel and the Epico panel in Brazilian Portuguese. (0182, 0183)
+- The devtools panel's notices and voice input in Brazilian Portuguese. (0184, 0185)
+
+### Changed
+
+- **The lock's small modal opens right under the lock**, not in the middle of the window, and
+  **turning the jail on there asks once and restarts the agent inside the jail**, instead of
+  leaving an amber lock to click again (patch 0188).
+- **Stop Generation on a thread's row in the sidebar asks first**, as the agent panel's
+  button already did (patch 0186).
+- **A paused jail shows "Paused" and Resume only.** The worded Stop beside them repeated the
+  lock's own Stop icon (patch 0187).
+- **Choosing a model, profile or thinking effort sets the default only with Shift**, now in the
+  native agent's profile picker too, which saved every pick as the default. Zed's new
+  Ctrl-Enter for "this thread only" makes a plain pick in Zeo, which keeps its Shift gesture
+  (patch 0010).
+- Five new Zed strings say Zeo: the Bedrock provider's setup notes and two Windows sandbox
+  errors (patch 0025).
+- Windows builds no longer ship AMD GPU Services (`amd_ags_x64.dll`), which Zed dropped
+  (patch 0127).
+
+### Fixed
+
+- Turning the jail off from the lock's small modal asked up to three times for one click
+  (patch 0188).
 
 ## [0.27.0] — 2026-11-24
 
