@@ -17,6 +17,45 @@ reasoning.
 
 ## [Unreleased]
 
+## [0.31.0] — 2026-11-27
+
+Zed snapshot `46375fbf` (from `6ba65ce3`). The new jail features need `sys-apps/ai-jail-3.7.1-r1`
+or later; with an older ai-jail a project that uses them does not start, and says which version to
+install. Everything else works as before.
+
+### Added
+
+- **A jail can use secrets from Zeo's vault without ever seeing them.** On the Agent Sandbox page,
+  a new Secrets block lists every vault secret that declares a variable and hosts (set on the
+  Secrets page); switch one on for the project. The agent sees the variable set to a placeholder,
+  and ai-jail's egress proxy puts the real value only into requests to those hosts — HTTPS
+  included, through a certificate authority made for that launch and valid for those hosts alone.
+  A chosen secret that cannot be read stops the start, with a sentence saying why (patches 0207,
+  0208).
+- **Stop the jailed agent from the command palette**: `agent: stop jailed agent` asks first, like
+  the lock's Stop, then ends everything in the jail and its network with it (patch 0209).
+- **A jail can push over SSH.** An allowed host may now name one port — `github.com:22` — and
+  ai-jail tunnels `ssh` through its egress proxy, checking host keys against your own
+  `known_hosts`, filtered to those hosts. `agent_sandbox.ssh_agent_socket` points jails at an
+  ssh-agent you start for them alone (its folder mapped read-only, `SSH_AUTH_SOCK` set); never
+  your desktop agent or `~/.ssh`. Stop also empties that agent (patch 0211).
+- **Share a terminal with the agent.** "Share with Agent" in a terminal's context menu marks its
+  tab with the agent's icon, and Claude Agent (Plus) can then list it and read its last lines
+  through the `zeo-terminals` MCP server — read-only, and only the terminals you shared. A jail
+  gets it only when chosen in its Capabilities; `agent.zeo_terminals` turns it off (patches 0214,
+  0215).
+
+### Changed
+
+- **A remote project's lock warns** in warning colour that its agent runs unjailed on the remote
+  machine, with everything your account there can reach (patch 0210).
+
+### Fixed
+
+- **A repository an agent can write can no longer hang Zeo** with a FIFO as its git config: the
+  checks before a worktree and before each git command now give up after 5 s and refuse,
+  instead of waiting forever (patches 0212, 0213).
+
 ## [0.30.0] — 2026-11-26
 
 The same Zed snapshot as 0.29.0 (`6ba65ce3`).
