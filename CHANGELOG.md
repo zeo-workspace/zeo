@@ -17,6 +17,16 @@ reasoning.
 
 ## [Unreleased]
 
+### Added
+
+- **A jailed project can log in with a Claude account kept by kyomei, instead of logging in by
+  itself.** Choose the account on the Agent Sandbox page (Claude account), or set
+  `agent_sandbox.account` for every project. Before each start Zeo asks kyomei to write only an
+  access token into the project's Claude folder; the refresh token stays in kyomei's vault, so a
+  new project needs no login and the jail cannot renew, leak or break the account. "Connect a new
+  account…" runs `kyomei add` in a terminal: a fresh login in the browser. If kyomei cannot hand
+  the account over, the agent does not start and says why (patch 0218).
+
 ## [0.32.0] — 2026-11-27
 
 Fixes from a security review of 0.31.0 (patch 0217), and two defects (patch 0216). Two settings
