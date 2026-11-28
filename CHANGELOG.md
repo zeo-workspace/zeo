@@ -17,6 +17,49 @@ reasoning.
 
 ## [Unreleased]
 
+## [0.32.0] — 2026-11-27
+
+Fixes from a security review of 0.31.0 (patch 0217), and two defects (patch 0216). Two settings
+change meaning, which is why this is a minor version: see *Changed* for what to do. Pair it with
+`sys-apps/ai-jail-3.7.1-r2`.
+
+### Security
+
+- **A jailed agent can no longer choose what Zeo runs when you log it in.** The login now runs
+  Zeo's own Claude Agent program with fixed arguments, in an empty private folder, and only the
+  resulting credentials are moved into the jail; nothing the agent advertised or wrote in its
+  folder runs on your machine (patch 0217).
+- **ai-jail puts a secret's real value only into the `Authorization` and `x-api-key` headers**
+  (and the query parameters a secret names), and refuses a request that carries the placeholder
+  anywhere else or names another host, so a server that echoes the request cannot hand the value
+  back to the agent (ai-jail 3.7.1-r2).
+- **Stop really stops**: if the jail is still running two seconds after Stop, it is killed; the
+  log says whether the jail's ssh-agent was actually emptied (patch 0217).
+- **Turning `zeo-terminals` off takes effect at once**, also for a session already running
+  (patch 0217).
+- A vault secret can no longer be handed over as a variable the jail's supervisor itself reads
+  (`LD_*`, `AI_JAIL*`, `SSL_*`, `*_PROXY`) (patch 0217).
+
+### Changed
+
+- **Jails keep their state under `~/.local/state/zeo/jail`**, no longer in the shared
+  `/var/tmp/zeo-jail`, and a state folder that is a link or open to other users stops the start.
+  **What to do:** each jailed project asks you to log in again once. A `state_root` you set
+  yourself is kept (patch 0217).
+- **Zeo now starts the jails' ssh-agent itself.** `agent_sandbox.ssh_agent_socket` stops a jailed
+  start, because nothing can tell an agent you named from your desktop's. **What to do:** remove
+  it, set `agent_sandbox.ssh_agent` to `true`, and load your key with
+  `SSH_AUTH_SOCK=/tmp/zeo-ssh-$UID/agent.sock ssh-add -c -t 1h -h github.com <key>` (patch 0217).
+- The Agent Sandbox page no longer suggests logging in by running `claude` on the jail's folder
+  by hand; use the thread's Log In button (patch 0217).
+
+### Fixed
+
+- **A list name keeps every letter you type.** Typed key by key, "Release work" became the list
+  "elease": the capital R and the space were taken as sidebar shortcuts (patch 0216).
+- **The minimized question bar counts questions**: one question card with two questions now reads
+  "Question pending · 2 questions" (patch 0216).
+
 ## [0.31.0] — 2026-11-27
 
 Zed snapshot `46375fbf` (from `6ba65ce3`). The new jail features need `sys-apps/ai-jail-3.7.1-r1`
