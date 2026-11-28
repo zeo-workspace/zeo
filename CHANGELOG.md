@@ -17,6 +17,12 @@ reasoning.
 
 ## [Unreleased]
 
+## [0.33.0] — 2026-11-28
+
+A jailed project can log in with a Claude account kept by kyomei (patch 0218), same Zed snapshot
+`46375fbf`. Nothing changes until you choose an account: by default each project still logs in
+by itself. Needs `app-crypt/kyomei` (0.1.0, in bentoo) only if you use it.
+
 ### Added
 
 - **A jailed project can log in with a Claude account kept by kyomei, instead of logging in by
